@@ -1,5 +1,5 @@
 # DeCoded-Shopper
 
-[![CircleCI](https://circleci.com/gh/DeCoded-Shopper/DeCoded-Shopper/tree/main.svg?style=svg)](https://circleci.com/gh/DeCoded-Shopper/DeCoded-Shoppe/tree/main)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/tshavhalufu/decoded-shopper/tree/circleci-project-setup.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/tshavhalufu/decoded-shopper/tree/circleci-project-setup)
 
 
