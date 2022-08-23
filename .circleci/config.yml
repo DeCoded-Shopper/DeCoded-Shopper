@@ -23,13 +23,16 @@ jobs:
       - checkout
       # Next, the node orb's install-packages step will install the dependencies from a package.json.
       # The orb install-packages step will also automatically cache them for faster future runs.
-
+      - run:
+          # If you are using yarn, change the line below from "npm" to "yarn"
+          name: Install dependencies
+          command: npm install
       - run:
           name: Run tests
           command: npm run test
 
 workflows:
-  version: 2.1
+  version:
   # Below is the definition of your workflow.
   # Inside the workflow, you provide the jobs you want to run, e.g this workflow runs the build-and-test job above.
   # CircleCI will run this workflow on every commit.
