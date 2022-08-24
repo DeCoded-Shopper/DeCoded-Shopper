@@ -1,6 +1,6 @@
 # DeCoded-Shopper
 
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/tshavhalufu/decoded-shopper/tree/circleci-project-setup.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/tshavhalufu/decoded-shopper/tree/circleci-project-setup)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/DeCoded-Shopper/DeCoded-Shopper/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/DeCoded-Shopper/DeCoded-Shopper/tree/main)
 
 
 
