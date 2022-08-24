@@ -21,11 +21,6 @@ jobs:
           name: run tests
           command: npm run test
           
-      - persist_to_workspace:
-          root: .
-          paths:
-            - coverage/coverage-final.json
-            
       - codecov/upload
 workflows:
   test_my_app:
