@@ -1,13 +1,15 @@
-import Register from './Register';
-import Login from './Login';
+import "./App.css";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Products from "./components/Products";
+
 
 function App() {
-
-  return (
-    <main className="App">
-      <Login/>
-    </main>
-  );
+  return <div className="App">
+    <Navbar />
+    <Products/>
+    <Footer />
+  </div>;
 }
 
 export default App;
