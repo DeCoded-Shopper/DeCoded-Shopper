@@ -19,7 +19,7 @@ jobs:
       
       - run: 
           name: run tests
-          command: npm run test
+          command: npm run test -- --coverage
           
       - codecov/upload
 workflows:
