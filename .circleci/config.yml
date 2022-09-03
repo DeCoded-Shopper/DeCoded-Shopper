@@ -21,7 +21,10 @@ jobs:
           name: run tests
           command: npm run test
           
-      - codecov/upload
+      - name: upload coverage
+          uses: codecov/upload
+          with:
+            token: ${{ secrets.CODECOV_TOKEN}}
 workflows:
   test_my_app:
     jobs:
