@@ -34,3 +34,28 @@ test('test register phone input', () => {
   userEvent.type(PhoneElement, '0725763430');
   
 });
+
+test('test footer', () => {
+  render(<Footer />);
+  const FooterElement = screen.getByText(/dc shopping 2022©/i);
+  expect(FooterElement).toBeInTheDocument();
+  
+});
+
+test('test Navbar', () => {
+  render(<Navbar />);
+  const NavbarElement = screen.getByRole('heading', {
+    name: /dc shopping/i
+  });
+  expect(NavbarElement).toBeInTheDocument();
+  
+});
+
+test('test Products', () => {
+  render(<Products />);
+  const ProductsElement = screen.getByRole('heading', {
+    name: /\{product\.title\}/i
+  });
+  expect(ProductsElement).toBeInTheDocument();
+  
+});
