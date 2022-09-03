@@ -50,12 +50,3 @@ test('test Navbar', () => {
   expect(NavbarElement).toBeInTheDocument();
   
 });
-
-test('test Products', () => {
-  render(<Products />);
-  const ProductsElement = screen.getByRole('heading', {
-    name: /\{product\.title\}/i
-  });
-  expect(ProductsElement).toBeInTheDocument();
-  
-});
