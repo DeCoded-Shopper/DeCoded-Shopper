@@ -4,7 +4,7 @@ import '../App.css'
 const Navbar = () => {
   return (
     <div className='navbar'>
-        <h1>dC Shopping</h1>
+        <h1 data-testid="head">dC Shopping</h1>
     </div>
   )
 }
