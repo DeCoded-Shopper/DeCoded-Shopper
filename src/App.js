@@ -10,18 +10,19 @@ import { Route, Routes } from "react-router-dom"
 
 function App() {
   return (
-    <>
-      <Navbar />
-      <div className="container">
-        <Routes>
-          <Route path="/" element={<Products />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/wishlist" element={<WishList />} />
-          <Route path="/register" element={<Register/>}/>
-        </Routes>
-      </div>
+    // <>
+    //   <Navbar />
+    //   <div className="container">
+    //     <Routes>
+    //       <Route path="/" element={<Products />} />
+    //       <Route path="/login" element={<Login />} />
+    //       <Route path="/wishlist" element={<WishList />} />
+    //       <Route path="/register" element={<Register/>}/>
+    //     </Routes>
+    //   </div>
       <Footer/>
-    </>
+    // </>
+
   )
 }
 

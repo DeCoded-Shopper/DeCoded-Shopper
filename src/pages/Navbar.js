@@ -4,7 +4,7 @@ export default function Navbar() {
   return (
     <nav className="nav">
       <Link to="/" className="site-title">
-        DecodedShopper
+        Decoded Shopper
       </Link>
       <ul>
         <CustomLink to="/login">Login</CustomLink>

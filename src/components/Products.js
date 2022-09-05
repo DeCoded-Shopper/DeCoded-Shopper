@@ -38,9 +38,14 @@ const Products = () => {
                <h6>{`Category: ${product.category}`}</h6>
            </div> 
            <div><img src={product.image} alt="#"/></div>
+           <button type="submit">
+              
+              Add to cart
+           </button>
            
           </div>
       ))}
+      
     </div>
   );
 };
