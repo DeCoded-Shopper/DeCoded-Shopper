@@ -5,6 +5,8 @@ import Footer from './components/Footer';
 import Login from './components/Login';
 import Register from './components/Register';
 import Navbar from './components/Navbar';
+import WishList from './components/WishList';
+import Products from './components/Products';
 
 test('test footer', () => {
   render(<Footer />);
@@ -13,6 +15,18 @@ test('test footer', () => {
   
 });
 
+test('test wishlist', () => {
+  render(<WishList />);
+  const WishListElement = screen.getByRole('heading', { name: /wishlist/i });
+  expect(WishListElement).toBeInTheDocument();
+  
+});
+test('test products loading', () => {
+  render(<Products />);
+  const ProductsLoadingElement = screen.getByRole('heading', { name: /loading\.\.\./i });
+  expect(ProductsLoadingElement).toBeInTheDocument();
+  
+});
 
 test('test email input', () => {
   render(<Login />);
