@@ -1,16 +1,23 @@
-import { getByTestId, render, screen } from '@testing-library/react';
+import React from 'react'
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import App from './App';
 import Footer from './components/Footer';
+import Login from './components/Login';
+import Register from './components/Register';
 import Navbar from './components/Navbar';
-import Products from './components/Products';
-import Login from './Login';
-import Register from './Register';
+
+test('test footer', () => {
+  render(<Footer />);
+  const FooterElement = screen.getByText(/dc shopping 2022©/i);
+  expect(FooterElement).toBeInTheDocument();
+  
+});
+
 
 test('test email input', () => {
   render(<Login />);
   const EmailElement = screen.getByRole('textbox', { name : /Email/i});
-  userEvent.type(EmailElement, 'singo1@gmail.com');
+  userEvent.type(EmailElement, 'singo@gmail.com');
   
 });
 
@@ -35,10 +42,4 @@ test('test register phone input', () => {
   
 });
 
-test('test footer', () => {
-  render(<Footer />);
-  const FooterElement = screen.getByText(/dc shopping 2022©/i);
-  expect(FooterElement).toBeInTheDocument();
-  
-});
 
