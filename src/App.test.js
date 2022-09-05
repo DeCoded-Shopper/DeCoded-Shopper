@@ -21,6 +21,7 @@ test('test wishlist', () => {
   expect(WishListElement).toBeInTheDocument();
   
 });
+
 test('test products loading', () => {
   render(<Products />);
   const ProductsLoadingElement = screen.getByRole('heading', { name: /loading\.\.\./i });
@@ -28,6 +29,12 @@ test('test products loading', () => {
   
 });
 
+test('test products loading', () => {
+  render(<Products />);
+  const ProductsLoadingElement = screen.getByRole('heading', { name: /loading\.\.\./i });
+  expect(ProductsLoadingElement).toBeInTheDocument();
+  
+});
 test('test email input', () => {
   render(<Login />);
   const EmailElement = screen.getByRole('textbox', { name : /Email/i});
@@ -42,6 +49,8 @@ test('test register name input', () => {
   
 });
 
+
+
 test('test register email input', () => {
   render(<Register />);
   const EmailElement = screen.getByRole('textbox', { name : /Email/i});
@@ -54,6 +63,14 @@ test('test register phone input', () => {
   const PhoneElement = screen.getByRole('textbox', { name : /Phone/i});
   userEvent.type(PhoneElement, '0725763430');
   
+});
+
+test('test register butoon input', () => {
+  render(<Register />);
+  const SignInElement = screen.getByRole('link', {
+    name: /sign in/i
+  });
+  userEvent.click(SignInElement);
 });
 
 
