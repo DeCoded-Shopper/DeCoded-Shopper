@@ -5,7 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import Register from './Register';
 import { Link } from 'react-router-dom'
+import "../Product.css";
 const LOGIN_URL = '/auth';
+
 
 const Login = () => {
     const { setAuth } = useContext(AuthContext);
