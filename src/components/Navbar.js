@@ -1,12 +1,28 @@
-import React from 'react'
-import '../App.css'
+import { Link, useMatch, useResolvedPath } from "react-router-dom"
 
-const Navbar = () => {
+export default function Navbar() {
   return (
-    <div className='navbar'>
-        <h1 data-testid="head">dC Shopping</h1>
-    </div>
+    <nav className="nav">
+      <Link to="/" className="site-title">
+        Decoded Shopper
+      </Link>
+      <ul>
+        <CustomLink to="/login">Login</CustomLink>
+        <CustomLink to="/wishlist">WishList</CustomLink>
+      </ul>
+    </nav>
   )
 }
 
-export default Navbar
+function CustomLink({ to, children, ...props }) {
+  const resolvedPath = useResolvedPath(to)
+  const isActive = useMatch({ path: resolvedPath.pathname, end: true })
+
+  return (
+    <li className={isActive ? "active" : ""}>
+      <Link to={to} {...props}>
+        {children}
+      </Link>
+    </li>
+  )
+}

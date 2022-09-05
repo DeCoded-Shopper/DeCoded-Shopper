@@ -42,11 +42,3 @@ test('test footer', () => {
   
 });
 
-test('test Navbar', () => {
-  render(<Navbar />);
-  const NavbarElement = screen.getByRole('heading', {
-    name: /dc shopping/i
-  });
-  expect(NavbarElement).toBeInTheDocument();
-  
-});

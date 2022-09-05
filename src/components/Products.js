@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../App.css";
+import "../Product.css";
 import axios from "axios";
 
 const Products = () => {
@@ -38,14 +38,9 @@ const Products = () => {
                <h6>{`Category: ${product.category}`}</h6>
            </div> 
            <div><img src={product.image} alt="#"/></div>
-           <button type="submit">
-              
-              Add to cart
-           </button>
            
           </div>
       ))}
-      
     </div>
   );
 };
