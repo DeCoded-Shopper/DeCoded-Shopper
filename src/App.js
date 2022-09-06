@@ -5,6 +5,7 @@ import Login from "./components/Login";
 import Register  from "./components/Register";
 import Products from "./components/Products";
 import WishList  from "./components/WishList";
+import { CartProvider } from 'react-use-cart';
 import "./index.css";
 
 import { Route, Routes } from "react-router-dom"
@@ -12,7 +13,8 @@ import { Route, Routes } from "react-router-dom"
 function App() {
   return (
     <>
-      <Navbar />
+    <CartProvider>
+    <Navbar />
       <div className="container">
         <Routes>
           <Route path="/" element={<Products />} />
@@ -22,6 +24,8 @@ function App() {
         </Routes>
       </div>
       <Footer/>
+    </CartProvider>
+      
     </>
   )
 }

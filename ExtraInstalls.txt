@@ -1,0 +1,8 @@
+to be able to use animated buttons
+
+npm install --save react-animated-buttons
+import AnimatedButton from 'react-animated-buttons';
+
+To be able to add product into cart and have a functional button
+
+npm i react-use-cart
