@@ -15,13 +15,6 @@ test('test footer', () => {
   
 });
 
-test('test wishlist', () => {
-  render(<WishList />);
-  const WishListElement = screen.getByRole('heading', { name: /wishlist/i });
-  expect(WishListElement).toBeInTheDocument();
-  
-});
-
 test('test products loading', () => {
   render(<Products />);
   const ProductsLoadingElement = screen.getByRole('heading', { name: /loading\.\.\./i });
