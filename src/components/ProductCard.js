@@ -4,6 +4,8 @@ import { useCart } from "react-use-cart";
 
 const ProductCard = (proparty) =>{
 
+    //this will return a card that consist of a product with button to add on wishlist
+
     const { addItem } = useCart();
     return(
             <div class="CardContainer">

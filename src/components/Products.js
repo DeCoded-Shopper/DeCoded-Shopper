@@ -8,6 +8,7 @@ const Products = () => {
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState([]);
 
+    // this will get all items from a nAPI
     useEffect(() => {
         setLoading(true);
         axios({
@@ -23,6 +24,8 @@ const Products = () => {
     }, []);
 
     return(
+
+      // loading all the product items in a products saying
     <div className="products-container">
       {loading && (
         <div>
