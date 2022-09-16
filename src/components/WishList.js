@@ -1,16 +1,16 @@
 import React from "react";
 import { useCart } from "react-use-cart";
 
-// export default function WishList() {
-//     
-//   }
-
 const Wishlist = () =>{
   const{isEmpty,totalUniqueItems,items,totalItems} = useCart();
+
+  //this massage will display if the wishlist is empth
 
   if(isEmpty) return <h1 className="text-center">Your shopping wishlist is empty </h1>
 
   return(
+
+    // this will return table of all items in wishlist
     
     <table>
       {

@@ -8,7 +8,7 @@
 .navbar {
   width: 100%;
   height: 10vh;
-  background-color: dodgerblue;
+  background-color: gray;
   display: flex;
   align-items: center;
   justify-content: center;
