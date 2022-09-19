@@ -5,6 +5,7 @@ import Login from "./components/Login";
 import Register  from "./components/Register";
 import Products from "./components/Products";
 import WishList  from "./components/WishList";
+
 import { CartProvider } from 'react-use-cart';
 import "./index.css";
 

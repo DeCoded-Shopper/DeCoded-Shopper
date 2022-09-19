@@ -5,6 +5,7 @@ import axios from "axios";
 
 
 const Products = () => {
+    const [searchTerm, setSearchTerm] = useState("");
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState([]);
 
@@ -23,24 +24,47 @@ const Products = () => {
         .finally(() => setLoading(false));
     }, []);
 
-    return(
 
+    return(
       // loading all the product items in a products saying
-    <div className="products-container">
+    <>
+    
+      <div className="searchInput_Container">
+        <input id="searchInput" type="text" placeholder="Search Product..." onChange={(event) => {
+          setSearchTerm(event.target.value);
+        }} />
+      </div>
+      <div className="products-container">
+          
+        {
+          data 
+            .filter((val) => {
+              if(searchTerm == ""){
+                return val;
+              }else if(val.title.toLowerCase().includes(searchTerm.toLowerCase())){
+                return val;
+              }
+            })
+            .map((val) => {
+              return(
+                <ProductCard title={val.title} category={val.category} img={val.image} item={val} key={val} />
+              )
+            })
+        }
+        <div className="">
       {loading && (
         <div>
-          {" "}
-          <h1>Loading...</h1>
-        </div>
-      )}
-        {data.map((item, index) =>{
-            return(
-                <ProductCard title={item.title} category={item.category} img={item.image} item={item} key={index} />
-            )
-        })}
-                
+        {" "}
+        <h1>Loading...</h1>
+      </div>
+    )}
+      </div>
     </div>
-    );
+  </>
+  );
+
+
+     
 };
 
 export default Products;
