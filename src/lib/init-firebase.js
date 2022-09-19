@@ -23,6 +23,7 @@ import {getFirestore} from 'firebase/firestore'
 const firebaseConfig = {
   apiKey: "AIzaSyC9TZztMNwQ_WW9d50ryZqK0HKNFsyEJl8",
   authDomain: "decoded-shopper.firebaseapp.com",
+  databaseURL: "https://decoded-shopper-default-rtdb.firebaseio.com",
   projectId: "decoded-shopper",
   storageBucket: "decoded-shopper.appspot.com",
   messagingSenderId: "618513717219",
@@ -35,38 +36,48 @@ const app = initializeApp(firebaseConfig);
 
 const analytics = getAnalytics(app);
 
-export const db = getFirestore(app);
+export const database = getDatabase(app); //get the realtime database
 export const auth = getAuth(app);
 
-function createData(userID, email, name, surname){
-  Set(ref(database, 'users/' + userID),{
+//saves data to real time database 
+function createData(userID, email, name, number,location){
+  set(ref(database, 'users/' + userID),{
     userID: userID,
     email: email,
-    firstname: name,
-    lastname: surname
+    fullname: name,
+    phoneNumber: number,
+    location: location
   });
 };
 
-export function createUsers(email, password, name, lastName){
+export function createUsers(email, password, name,phone,location){
+  let status;
+  try {
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      createData(user.uid,email,name,phone,location);
+      console.log("account created successfully!");
+      alert("success"); 
 
-  createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    const user = userCredential.user;
-    createData(user, uid, email, name, lastName);
-    console.log("account created successfully!");
-    alert("success")
-  }).catch((error) => {
-    const errorMessage = error.message;
-    if(errorMessage === "Firebase: Error (auth/email-already-in-use)."){
-      console.log(errorMessage);
-      alert("Email already exists");
-    }else{
-      console.log(errorMessage);
-    }
+    });
+    status = "done";
+    console.log(status);
+  } catch (error) {
+    
+      const errorMessage = error.message;
+      if(errorMessage === "Firebase: Error (auth/email-already-in-use)."){
+        console.log(errorMessage);
+        alert("Email already exists");
+      }else{
+        console.log(errorMessage);
+      }
 
-  });
-
-
+      status = "failed";
+      console.log(status);
+  }
+  
+  return status;
 }
 
 export const loginUser = (email, password) => {

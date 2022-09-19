@@ -1,7 +1,9 @@
 import React from "react";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect} from "react";
+import { useNavigate } from 'react-router-dom';
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { createUsers } from "../lib/init-firebase";
 
 import Login from './Login';
 
@@ -15,6 +17,7 @@ const REGISTER_URL = '/register';
 const Register = () => {
     const userRef = useRef();
     const errRef = useRef();
+    const navigate = useNavigate();
 
     const [user, setUser] = useState('');
     const [validName, setValidName] = useState(false);
@@ -85,6 +88,16 @@ const Register = () => {
         if (!v1 || !v2 || !v3 || !v4 || !v5 ) {
             setErrMsg("Invalid Entry");
             return;
+        }else{
+            //create users on the database
+            const response = createUsers(email,pwd,user,phone,location);
+            
+            if(response === "done"){ // if registration is successful
+                navigate('/', {replace : true}); //change the pages 
+            }else{
+                //when registration is false
+                alert("An error has occured");
+            }
         }
         // try {
         //     const response = await axios.post(REGISTER_URL,
@@ -271,7 +284,7 @@ const Register = () => {
                             Must match the first password input field.
                         </p>
 
-                        <button disabled={!validName || !validPwd ||!validEmail||!validLocation||!validPhone ||!validMatch ? true : false}>Sign Up</button>
+                        <button type="submit" disabled={!validName || !validPwd ||!validEmail||!validLocation||!validPhone ||!validMatch ? true : false}>Sign Up</button>
                     </form>
                     <p>
                         Already registered?<br />

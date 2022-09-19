@@ -7,6 +7,7 @@ import Products from "./components/Products";
 import WishList  from "./components/WishList";
 import { CartProvider } from 'react-use-cart';
 import "./index.css";
+import { AuthProvider } from './context/AuthProvider';
 
 import { Route, Routes } from "react-router-dom"
 
@@ -15,6 +16,7 @@ function App() {
     <>
     <CartProvider>
     <Navbar />
+      <AuthProvider>
       <div className="container">
         <Routes>
           <Route path="/" element={<Products />} />
@@ -23,6 +25,7 @@ function App() {
           <Route path="/register" element={<Register/>}/>
         </Routes>
       </div>
+      </AuthProvider>
       <Footer/>
     </CartProvider>
       

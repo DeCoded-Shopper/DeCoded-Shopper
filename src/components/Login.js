@@ -1,6 +1,6 @@
 import React from "react";
 import { useRef, useState, useEffect, useContext } from 'react';
-import AuthContext from "../context/AuthProvider";
+import {AuthContext} from "../context/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import Register from './Register';
