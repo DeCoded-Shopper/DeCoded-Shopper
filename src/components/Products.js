@@ -33,11 +33,6 @@ const Products = () => {
           <h1>Loading...</h1>
         </div>
       )}
-        {data.map((item, index) =>{
-            return(
-                <ProductCard title={item.title} category={item.category} img={item.image} item={item} key={index} />
-            )
-        })}
                 
     </div>
     );
