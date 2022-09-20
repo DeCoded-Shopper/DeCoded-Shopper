@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer";
 import Login from "./components/Login";
-import Register  from "./components/Register";
+import Register  from "./components/Sign_Up/Register";
 import Products from "./components/Products";
 import WishList  from "./components/WishList";
 import { CartProvider } from 'react-use-cart';
