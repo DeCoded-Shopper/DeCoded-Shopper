@@ -128,7 +128,7 @@ const Login = () => {
                             Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
                         </p>
 
-                        <button disabled={!validEmail || !validPwd}>Sign In</button>
+                        <button type = "submit" disabled={!validEmail || !validPwd ? true : false}>Sign In</button>
                     </form>
                     <p>
                     Need an Account?<br />
