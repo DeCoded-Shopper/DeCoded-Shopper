@@ -216,27 +216,25 @@ const Register = () => {
                         </p>
 
 
-                        <label htmlFor="location">
-                            Location:
-                            <FontAwesomeIcon icon={faCheck} className={validLocation ? "valid" : "hide"} />
-                            <FontAwesomeIcon icon={faTimes} className={validLocation || !location ? "hide" : "invalid"} />
+                        <label htmlFor="confirm_p">
+                            Confirm Phone:
+                            <FontAwesomeIcon icon={faCheck} className={validMatch && validPhone ? "valid" : "hide"} />
+                            <FontAwesomeIcon icon={faTimes} className={validMatch || !phone ? "hide" : "invalid"} />
                         </label>
                         <input
-                            type="text"
-                            id="location"
-                            autoComplete="off"
-                            onChange={(e) => setLocation(e.target.value)}
-                            value={location}
+                            type="Phone"
+                            id="confirm_phone"
+                            onChange={(e) => setPhone(e.target.value)}
+                            value={validPhone}
                             required
-                            aria-invalid={validLocation ? "false" : "true"}
-                            aria-describedby="uidnote"
-                            onFocus={() => setLocationFocus(true)}
-                            onBlur={() => setLocationFocus(false)}
+                            aria-invalid={validMatch ? "false" : "true"}
+                            aria-describedby="uinote"
+                            onFocus={() => setPhoneFocus(true)}
+                            onBlur={() => setPhoneFocus(false)}
                         />
-                        <p id="uidnote" className={locationFocus && location && !validLocation ? "instructions" : "offscreen"}>
+                        <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
-                            Enter a valid location.<br />
-                        
+                            Must match the first phone number field.
                         </p>
 
 
