@@ -14,7 +14,7 @@ const Products = () => {
         setLoading(true);
         axios({
         method: "GET",
-        url: "https://fakestoreapi.com/products",
+        url: "https://fakestoreapi.com/products/categories",
         })
         .then((res) => {
             console.log(res.data);
