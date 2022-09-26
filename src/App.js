@@ -10,6 +10,7 @@ import { CartProvider } from 'react-use-cart';
 import "./index.css";
 
 import { Route, Routes } from "react-router-dom"
+import Homepage from './components/Homepage';
 
 function App() {
   return (
@@ -18,10 +19,12 @@ function App() {
     <Navbar />
       <div className="container">
         <Routes>
-          <Route path="/" element={<Products />} />
+          <Route path="/Homepage" element={<Homepage/>} />
           <Route path="/login" element={<Login />} />
           <Route path="/wishlist" element={<WishList />} />
           <Route path="/register" element={<Register/>}/>
+          <Route path='/products' element={<Products/>}/>
+          
         </Routes>
       </div>
       <Footer/>

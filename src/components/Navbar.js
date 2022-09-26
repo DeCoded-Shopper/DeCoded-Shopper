@@ -4,12 +4,12 @@ import { Link, useMatch, useResolvedPath } from "react-router-dom"
 export default function Navbar() {
   return (
     <nav className="nav">
-      <Link to="/" className="site-title">
+      <Link to="/Homepage" className="site-title">
         Decoded Shopper
       </Link>
       <ul>
         <CustomLink to="/login">Login</CustomLink>
-        <CustomLink to="/wishlist">WishList</CustomLink>
+        {/* <CustomLink to="/wishlist">WishList</CustomLink> */}
       </ul>
     </nav>
   )

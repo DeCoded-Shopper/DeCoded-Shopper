@@ -4,8 +4,7 @@ import ProductCard from "./ProductCard";
 import axios from "axios";
 
 
-const Products = () => {
-    const [searchTerm, setSearchTerm] = useState("");
+const Homepage = () => {
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState([]);
 
@@ -14,7 +13,7 @@ const Products = () => {
         setLoading(true);
         axios({
         method: "GET",
-        url: "https://fakestoreapi.com/products?limit=5",
+        url: "https://fakestoreapi.com/products?limit=2",
         })
         .then((res) => {
             console.log(res.data);
@@ -28,24 +27,10 @@ const Products = () => {
     return(
       // loading all the product items in a products saying
     <>
-    
-      <div className="searchInput_Container">
-        <input id="searchInput" type="text" placeholder="Search Product..." onChange={(event) => {
-          setSearchTerm(event.target.value);
-        }} />
-      </div>
       <div className="products-container">
           
         {
-          data 
-            .filter((val) => {
-              if(searchTerm == ""){
-                return val;
-              }else if(val.title.toLowerCase().includes(searchTerm.toLowerCase())){
-                return val;
-              }
-            })
-            .map((val) => {
+          data.map((val) => {
               return(
                 <ProductCard title={val.title} category={val.category} img={val.image} item={val} key={val} />
               )
@@ -67,4 +52,4 @@ const Products = () => {
      
 };
 
-export default Products;
+export default Homepage;
