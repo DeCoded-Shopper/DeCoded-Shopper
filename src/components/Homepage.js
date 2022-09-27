@@ -26,7 +26,7 @@ const Homepage = () => {
 
     return(
       // loading all the product items in a products saying
-    <>
+    <> 
       <div className="products-container">
           
         {
