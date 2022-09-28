@@ -32,6 +32,7 @@ test('test products loading', () => {
   
 });
 
+// t
 test('test products search', () => {
   render(<Products />);
   const ProductsSearchElement =  screen.getByRole('textbox');
@@ -39,9 +40,21 @@ test('test products search', () => {
   
 });
 
-// // teting the Login email input
+test('test Navbar header', () => {
+  render(<Router><AuthProvider><Navbar /></AuthProvider></Router>);
+  const NavbarHeadElement = screen.getByText(/decoded shopper/i);
+  expect(NavbarHeadElement).toBeInTheDocument();
+  
+});
 
-// afterEach(cleanup)
+test('test Navbar list', () => {
+  render(<Router><AuthProvider><Navbar /></AuthProvider></Router>);
+  const NavbarListElement =  screen.getByRole('list');
+  expect(NavbarListElement).toBeInTheDocument();
+  
+});
+
+// // teting the Login email input
 
 test('test email input', async () => {
   render(<Router><AuthProvider><Login /></AuthProvider></Router>);
