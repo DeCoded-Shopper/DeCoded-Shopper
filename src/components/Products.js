@@ -27,11 +27,8 @@ const Products = () => {
         setLoading(true);
         axios({
         method: "GET",
-<<<<<<< HEAD
-        url: "https://fakestoreapi.com/products",
-=======
         url: "https://fakestoreapi.com/products/",
->>>>>>> refs/remotes/origin/main
+
         })
         .then((res) => {
             console.log(res.data);
