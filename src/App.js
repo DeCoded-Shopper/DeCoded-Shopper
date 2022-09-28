@@ -5,13 +5,13 @@ import Login from "./components/Login";
 import Register  from "./components/Register";
 import Products from "./components/Products";
 import WishList  from "./components/WishList";
+import ProfilePage  from "./components/ProfilePage";
 import { AuthProvider } from './context/AuthProvider';
 
 import { CartProvider } from 'react-use-cart';
 import "./index.css";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
-import Homepage from './components/Homepage';
 
 function App() {
   return (
@@ -22,11 +22,11 @@ function App() {
       <div className="container">
         
           <Routes>
-            <Route path="/Homepage" element={<Homepage/>} />
             <Route path="/login" element={<Login />} />
             <Route path="/wishlist" element={<WishList />} />
             <Route path="/register" element={<Register/>}/>
             <Route path='/products' element={<Products/>}/>
+            <Route path='/profilepage' element={<ProfilePage/>}/>
           </Routes>
         
       </div>
