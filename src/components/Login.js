@@ -17,7 +17,7 @@ const Login = () => {
     const userRef = useRef();
     const errRef = useRef();
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;

@@ -9,7 +9,7 @@ import WishList from './components/WishList';
 import Products from './components/Products';
 import App from './App';
 import { AuthProvider } from './context/AuthProvider';
-import { Router } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 
 
@@ -43,48 +43,47 @@ test('test products search', () => {
 
 // afterEach(cleanup)
 
-// test('test email input', () => {
-//   render(<Login />);
-//   const EmailElement = screen.getByRole('textbox', { name : /Email/i});
-//   userEvent.type(EmailElement, 'alenbob@gmail.com');
+test('test email input', async () => {
+  render(<Router><AuthProvider><Login /></AuthProvider></Router>);
+  const EmailElement = screen.getByRole('textbox', { name : /Email/i});
+  userEvent.type(EmailElement, 'singo@gmail.com');
+});
+
+// teting the register name input
+test('test register name input', () => {
+  render(<Router><AuthProvider><Register /></AuthProvider></Router>);
+  const FullNameElement = screen.getByRole('textbox', { name : /FullName/i});
+  userEvent.type(FullNameElement, 'Singo');
   
-// });
+});
 
-// // teting the register name input
-// test('test register name input', () => {
-//   render(<Register />);
-//   const FullNameElement = screen.getByRole('textbox', { name : /FullName/i});
-//   userEvent.type(FullNameElement, 'Singo');
+
+// teting the register email input
+
+test('test register email input', () => {
+  render(<Router><AuthProvider><Register /></AuthProvider></Router>);
+  const EmailElement = screen.getByRole('textbox', { name : /Email/i});
+  userEvent.type(EmailElement, 'singo1@gmail.com');
   
-// });
+});
 
+// teting the register phone input
 
-// // teting the register email input
-
-// test('test register email input', () => {
-//   render(<Register />);
-//   const EmailElement = screen.getByRole('textbox', { name : /Email/i});
-//   userEvent.type(EmailElement, 'singo1@gmail.com');
+test('test register phone input', () => {
+  render(<Router><AuthProvider><Register /></AuthProvider></Router>);
+  const PhoneElement = screen.getByRole('textbox', { name : /Phone/i});
+  userEvent.type(PhoneElement, '0725763430');
   
-// });
+});
 
-// // teting the register phone input
+// teting the register butoon input
 
-// test('test register phone input', () => {
-//   render(<Register />);
-//   const PhoneElement = screen.getByRole('textbox', { name : /Phone/i});
-//   userEvent.type(PhoneElement, '0725763430');
-  
-// });
-
-// // teting the register butoon input
-
-// test('test register butoon input', () => {
-//   render(<Register />);
-//   const SignInElement = screen.getByRole('link', {
-//     name: /sign in/i
-//   });
-//   userEvent.click(SignInElement);
-// });
+test('test register butoon input', () => {
+  render(<Router><AuthProvider><Register /></AuthProvider></Router>);
+  const SignInElement = screen.getByRole('link', {
+    name: /sign in/i
+  });
+  userEvent.click(SignInElement);
+});
 
 
