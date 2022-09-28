@@ -7,11 +7,13 @@ import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import {useAuthContext} from "../context/AuthProvider";
 
+
 import Register from './Register';
 const LOGIN_URL = '/auth';
 
 const Login = () => {
     const { login } = useAuthContext();
+
     const userRef = useRef();
     const errRef = useRef();
 

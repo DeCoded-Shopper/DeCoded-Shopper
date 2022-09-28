@@ -28,7 +28,6 @@ export const AuthProvider = ({ children }) => {
             });
     }
     );
-
     const values = {
         currentUser,login
     }
@@ -41,3 +40,5 @@ export const AuthProvider = ({ children }) => {
 }
 
 export default AuthContext;
+
+export const useAuthContext = () => React.useContext(AuthContext);

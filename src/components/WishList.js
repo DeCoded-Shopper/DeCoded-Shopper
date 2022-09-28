@@ -23,7 +23,7 @@ const Wishlist = () =>{
               </td>
               <td>   {item.title}   </td>
               <td> </td>
-              <td>   $ {item.price} </td>
+              <td>   R {item.price} </td>
             </tr>
           )
           

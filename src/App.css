@@ -1,4 +1,4 @@
-* {
+.app_container {
   
   box-sizing: border-box;
   padding: 0;
@@ -8,11 +8,10 @@
 .navbar {
   width: 100%;
   height: 10vh;
-  background-color: gray;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: black;
   padding: 10px;
   font-weight: bold;
 }
