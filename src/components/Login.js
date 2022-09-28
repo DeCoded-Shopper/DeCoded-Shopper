@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useRef, useState, useEffect, useContext } from 'react';
 import {AuthContext} from "../context/AuthProvider";
@@ -8,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 import Register from './Register';
 import { Link } from 'react-router-dom'
 const LOGIN_URL = '/auth';
-
 
 const Login = () => {
     const { login } = useContext(AuthContext);
@@ -53,35 +53,6 @@ const Login = () => {
             navigate('/Products', {replace:true})
             // console.log("success")
         })
-
-        // try {
-        //     const response = await axios.post(LOGIN_URL,
-        //         JSON.stringify({ email, pwd }),
-        //         {
-        //             headers: { 'Content-Type': 'application/json' },
-        //             withCredentials: true
-        //         }
-        //     );
-        //     console.log(JSON.stringify(response?.data));
-        //     //console.log(JSON.stringify(response));
-        //     const accessToken = response?.data?.accessToken;
-        //     const roles = response?.data?.roles;
-        //     setAuth({ email, pwd, roles, accessToken });
-        //     setEmail('');
-        //     setPwd('');
-        //     setSuccess(true);
-        // } catch (err) {
-        //     if (!err?.response) {
-        //         setErrMsg('No Server Response');
-        //     } else if (err.response?.status === 400) {
-        //         setErrMsg('Missing Username or Password');
-        //     } else if (err.response?.status === 401) {
-        //         setErrMsg('Unauthorized');
-        //     } else {
-        //         setErrMsg('Login Failed');
-        //     }
-        //     errRef.current.focus();
-        // }
     }
 
     return (

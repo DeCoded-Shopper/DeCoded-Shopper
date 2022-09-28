@@ -99,36 +99,7 @@ const Register = () => {
                 alert("An error has occured");
             }
         }
-        // try {
-        //     const response = await axios.post(REGISTER_URL,
-        //         JSON.stringify({ user: user,password: pwd,email: email,locaton: location,phone: phone }),
-        //         {
-        //             headers: { 'Content-Type': 'application/json' },
-        //             withCredentials: true
-        //         }
-        //     );
-        //     console.log(response?.data);
-        //     console.log(response?.accessToken);
-        //     console.log(JSON.stringify(response))
-        //     setSuccess(true);
-        //     //clear state and controlled inputs
-        //     //need value attrib on inputs for this
-        //     setUser('');
-        //     setPwd('');
-        //     setMatchPwd('');
-        //     setEmail('');
-        //     setLocation('');
-        //     setPhone('');
-        // } catch (err) {
-        //     if (!err?.response) {
-        //         setErrMsg('No Server Response');
-        //     } else if (err.response?.status === 409) {
-        //         setErrMsg('Username Taken');
-        //     } else {
-        //         setErrMsg('Registration Failed')
-        //     }
-        //     errRef.current.focus();
-        // }
+
     }
 
     return (
