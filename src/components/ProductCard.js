@@ -14,7 +14,7 @@ const ProductCard = (proparty) =>{
                     <h6 class="card-text">{proparty.category}</h6>   
                 </div>
                 <div>
-                    <img src={proparty.img} class="card-img-top"/>
+                    <img src={proparty.img} class="card-img-top" alt=""/>
                 </div>
                 <button class="btn-success" onClick={() => addItem(proparty.item)}>Add to wishlist</button>
             </div>

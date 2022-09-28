@@ -1,7 +1,9 @@
 import React from "react";
 import { useRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { createUsers } from "./init-firebase";
 
 import Login from './Login';
 
@@ -13,6 +15,7 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const REGISTER_URL = '/register';
 
 const Register = () => {
+    const navigate = useNavigate();
     const userRef = useRef();
     const errRef = useRef();
 
@@ -85,37 +88,18 @@ const Register = () => {
         if (!v1 || !v2 || !v3 || !v4 || !v5 ) {
             setErrMsg("Invalid Entry");
             return;
+        }else{
+            //create users on the database
+            const response = createUsers(email,pwd,user,phone,location);
+            
+            if(response === "done"){ // if registration is successful
+                navigate('/Login', {replace : true}); //change the pages 
+            }else{
+                //when registration is false
+                alert("An error has occured");
+            }
         }
-        // try {
-        //     const response = await axios.post(REGISTER_URL,
-        //         JSON.stringify({ user: user,password: pwd,email: email,locaton: location,phone: phone }),
-        //         {
-        //             headers: { 'Content-Type': 'application/json' },
-        //             withCredentials: true
-        //         }
-        //     );
-        //     console.log(response?.data);
-        //     console.log(response?.accessToken);
-        //     console.log(JSON.stringify(response))
-        //     setSuccess(true);
-        //     //clear state and controlled inputs
-        //     //need value attrib on inputs for this
-        //     setUser('');
-        //     setPwd('');
-        //     setMatchPwd('');
-        //     setEmail('');
-        //     setLocation('');
-        //     setPhone('');
-        // } catch (err) {
-        //     if (!err?.response) {
-        //         setErrMsg('No Server Response');
-        //     } else if (err.response?.status === 409) {
-        //         setErrMsg('Username Taken');
-        //     } else {
-        //         setErrMsg('Registration Failed')
-        //     }
-        //     errRef.current.focus();
-        // }
+
     }
 
     return (
@@ -271,7 +255,7 @@ const Register = () => {
                             Must match the first password input field.
                         </p>
 
-                        <button disabled={!validName || !validPwd ||!validEmail||!validLocation||!validPhone ||!validMatch ? true : false}>Sign Up</button>
+                        <button type="submit" disabled={!validName || !validPwd ||!validEmail||!validLocation||!validPhone ||!validMatch ? true : false}>Sign Up</button>
                     </form>
                     <p>
                         Already registered?<br />

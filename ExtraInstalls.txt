@@ -6,3 +6,5 @@ import AnimatedButton from 'react-animated-buttons';
 To be able to add product into cart and have a functional button
 
 npm i react-use-cart
+
+npm install firebase --save

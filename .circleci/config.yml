@@ -15,8 +15,12 @@ jobs:
       - run: 
           name: install npm
           command: sudo npm install -g npm@latest
-
-      
+      - run:
+          name: install cart
+          command: npm i react-use-cart
+      - run:
+          name: install firebase
+          command: npm install firebase --save
       - run: 
           name: run tests
           command: npm run test -- --coverage
