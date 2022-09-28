@@ -1,9 +1,17 @@
 import React from "react";
+<<<<<<< HEAD
 import { useRef, useState, useEffect} from "react";
 import { useNavigate } from 'react-router-dom';
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { createUsers } from "../lib/init-firebase";
+=======
+import { useRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { createUsers } from "./init-firebase";
+>>>>>>> 5d29616fe24264815ec69d0b62975dc159fa2f1c
 
 import Login from './Login';
 
@@ -15,6 +23,7 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const REGISTER_URL = '/register';
 
 const Register = () => {
+    const navigate = useNavigate();
     const userRef = useRef();
     const errRef = useRef();
     const navigate = useNavigate();
@@ -93,7 +102,11 @@ const Register = () => {
             const response = createUsers(email,pwd,user,phone,location);
             
             if(response === "done"){ // if registration is successful
+<<<<<<< HEAD
                 navigate('/', {replace : true}); //change the pages 
+=======
+                navigate('/Login', {replace : true}); //change the pages 
+>>>>>>> 5d29616fe24264815ec69d0b62975dc159fa2f1c
             }else{
                 //when registration is false
                 alert("An error has occured");

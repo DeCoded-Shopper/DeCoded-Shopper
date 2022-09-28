@@ -4,8 +4,7 @@ import ProductCard from "./ProductCard";
 import axios from "axios";
 
 
-const Products = () => {
-    const [searchTerm, setSearchTerm] = useState("");
+const Homepage = () => {
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState([]);
 
@@ -14,7 +13,7 @@ const Products = () => {
         setLoading(true);
         axios({
         method: "GET",
-        url: "https://fakestoreapi.com/products",
+        url: "https://fakestoreapi.com/products?limit=2",
         })
         .then((res) => {
             console.log(res.data);
@@ -27,25 +26,11 @@ const Products = () => {
 
     return(
       // loading all the product items in a products saying
-    <>
-    
-      <div className="searchInput_Container">
-        <input id="searchInput" type="text" placeholder="Search Product..." onChange={(event) => {
-          setSearchTerm(event.target.value);
-        }} />
-      </div>
+    <> 
       <div className="products-container">
           
         {
-          data 
-            .filter((val) => {
-              if(searchTerm == ""){
-                return val;
-              }else if(val.title.toLowerCase().includes(searchTerm.toLowerCase())){
-                return val;
-              }
-            })
-            .map((val) => {
+          data.map((val) => {
               return(
                 <ProductCard title={val.title} category={val.category} img={val.image} item={val} key={val} />
               )
@@ -54,19 +39,11 @@ const Products = () => {
         <div className="">
       {loading && (
         <div>
-<<<<<<< HEAD
-          {" "}
-          <h1>Loading...</h1>
-        </div>
-      )}
-                
-=======
         {" "}
         <h1>Loading...</h1>
       </div>
     )}
       </div>
->>>>>>> 5d29616fe24264815ec69d0b62975dc159fa2f1c
     </div>
   </>
   );
@@ -75,4 +52,4 @@ const Products = () => {
      
 };
 
-export default Products;
+export default Homepage;

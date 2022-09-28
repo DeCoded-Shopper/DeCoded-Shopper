@@ -3,15 +3,19 @@ import { useRef, useState, useEffect, useContext } from 'react';
 import {AuthContext} from "../context/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
+
 import Register from './Register';
 import { Link } from 'react-router-dom'
 const LOGIN_URL = '/auth';
 
 
 const Login = () => {
-    const { setAuth } = useContext(AuthContext);
+    const { login } = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
+
+    const navigate = useNavigate()
 
     const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -43,7 +47,12 @@ const Login = () => {
     },[email])
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+       e.preventDefault();
+
+        await login(email, pwd).then((user) => {
+            navigate('/Products', {replace:true})
+            // console.log("success")
+        })
 
         // try {
         //     const response = await axios.post(LOGIN_URL,
@@ -128,7 +137,11 @@ const Login = () => {
                             Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
                         </p>
 
+<<<<<<< HEAD
                         <button type = "submit" disabled={!validEmail || !validPwd ? true : false}>Sign In</button>
+=======
+                        <button type="submit" onClick={handleSubmit} disabled={!validEmail || !validPwd}>Sign In</button>
+>>>>>>> 5d29616fe24264815ec69d0b62975dc159fa2f1c
                     </form>
                     <p>
                     Need an Account?<br />
