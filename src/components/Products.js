@@ -9,6 +9,8 @@ const Products = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
+
+      {/*getting the list of items in the sever*/}
         setLoading(true);
         axios({
         method: "GET",
@@ -31,7 +33,9 @@ const Products = () => {
         </div>
       )}
         {data.map((item, index) =>{
+          {/*displaying the items to the screen */}
             return(
+
                 <ProductCard title={item.title} category={item.category} img={item.image} item={item} key={index} />
             )
         })}

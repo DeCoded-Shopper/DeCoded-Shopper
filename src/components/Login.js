@@ -3,12 +3,12 @@ import { useRef, useState, useEffect, useContext } from 'react';
 import AuthContext from "../context/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
-import Register from './Register';
-import { Link } from 'react-router-dom'
 const LOGIN_URL = '/auth';
 
 
 const Login = () => {
+
+    // using regular expretion to verify the user input
     const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
@@ -26,6 +26,9 @@ const Login = () => {
 
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
+
+
+    // testing the user input
 
     useEffect(() => {
         userRef.current.focus();
@@ -82,13 +85,14 @@ const Login = () => {
                     <h1>You are logged in!</h1>
                     <br />
                     <p>
-                        <a href="#">Go to Home</a>
+                        <a href="./">Go to Home</a>
                     </p>
                 </section>
             ) : (
                 <section>
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1>Sign In</h1>
+                    {/* setting the user interface and getting input from the user*/}
                     <form onSubmit={handleSubmit}>
                         <label htmlFor="email">Email:</label>
                         <input

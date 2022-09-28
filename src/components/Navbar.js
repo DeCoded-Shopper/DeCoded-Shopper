@@ -8,6 +8,7 @@ export default function Navbar() {
         Decoded Shopper
       </Link>
       <ul>
+        {/*routing to different pages */}
         <CustomLink to="/login">Login</CustomLink>
         <CustomLink to="/wishlist">WishList</CustomLink>
       </ul>

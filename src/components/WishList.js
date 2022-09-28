@@ -9,8 +9,12 @@ const Wishlist = () =>{
   const{isEmpty,totalUniqueItems,items,totalItems} = useCart();
 
   if(isEmpty) return <h1 className="text-center">Your shopping wishlist is empty </h1>
+  
+  
+  {/*displaying the iteam that are in the wishlist to the screen*/}
 
   return(
+    
     
     <table>
       {

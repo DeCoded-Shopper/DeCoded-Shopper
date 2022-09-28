@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import Login from './Login';
+// regular expertions to verify the user input
 
 const USER_REGEX = /^[A-z]+ [A-z]{3,23}$/;
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -15,6 +15,8 @@ const REGISTER_URL = '/register';
 const Register = () => {
     const userRef = useRef();
     const errRef = useRef();
+
+    // setting the user interface and getting input from the user
 
     const [user, setUser] = useState('');
     const [validName, setValidName] = useState(false);
@@ -124,7 +126,7 @@ const Register = () => {
                 <section>
                     <h1>Success!</h1>
                     <p>
-                        <a href="#">Sign In</a>
+                        <a href="./">Sign In</a>
                     </p>
                 </section>
             ) : (
@@ -132,6 +134,7 @@ const Register = () => {
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1>Register</h1>
                     <form onSubmit={handleSubmit}>
+                        {/*setting up the user interface */}
                         <label htmlFor="username">
                             FullName:
                             <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />

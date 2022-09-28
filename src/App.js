@@ -16,6 +16,7 @@ function App() {
     <CartProvider>
     <Navbar />
       <div className="container">
+        {/* setting up the routing links */}
         <Routes>
           <Route path="/" element={<Products />} />
           <Route path="/login" element={<Login />} />
