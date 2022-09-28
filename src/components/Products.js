@@ -36,6 +36,7 @@ const Products = () => {
         .catch((e) => console.log(e))
         .finally(() => setLoading(false));
     }, []);
+
     return(
       // loading all the product items in a products saying
       
