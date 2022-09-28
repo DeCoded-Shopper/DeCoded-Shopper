@@ -10,6 +10,7 @@ import Products from './components/Products';
 import App from './App';
 import { AuthProvider } from './context/AuthProvider';
 import { BrowserRouter as Router } from 'react-router-dom';
+import ProfilePage from './components/ProfilePage';
 
 
 
@@ -97,6 +98,19 @@ test('test register butoon input', () => {
     name: /sign in/i
   });
   userEvent.click(SignInElement);
+});
+
+test('test profile header', () => {
+  render(<Router><AuthProvider><ProfilePage /></AuthProvider></Router>);
+  const ProfileHeaderElement = screen.getByText(/my profile/i)
+  expect(ProfileHeaderElement).toBeInTheDocument();
+});
+test('test profile sign out butoon input', () => {
+  render(<Router><AuthProvider><ProfilePage /></AuthProvider></Router>);
+  const SignOutElement = screen.getByRole('button', {
+    name: /log out/i
+  });
+  userEvent.click(SignOutElement);
 });
 
 
