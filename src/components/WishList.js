@@ -10,13 +10,9 @@ const Wishlist = () =>{
   const{isEmpty,totalUniqueItems,items,totalItems} = useCart();
 
   //this massage will display if the wishlist is empth
-
   if(isEmpty) return <h1 className="text-center">Your shopping wishlist is empty </h1>
-
   return(
-
     // this will return table of all items in wishlist
-    
     <>
       <table className="line">
         {items.map((item, index) => {
@@ -32,30 +28,15 @@ const Wishlist = () =>{
               <td> <img src={"bin.png"} style={{ height: '3rem', width: '3rem' }}  onClick={() => alert(items)}></img> </td>
             </tr></>
           );
-
-
         })}
-
       </table>
       <h2>{items.length} items in list with a Total {
-
-          
-        
       //  items.at(0).price+items.at(1).price
       items.map((item, index)=>{return (item.price)})
-      
-       // for(let i = 0; i < items.length; i++) {
-       //     total+=items.at(i).price
-       // }
-       // return total 
-
       }
       </h2>
       <button onClick={() => alert('Shopping List Cleared!')}>Clear Wishlist</button>
-      </>
-    
+      </> 
   )
-
 }
 export default Wishlist;
-
