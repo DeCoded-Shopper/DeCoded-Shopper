@@ -3,26 +3,36 @@ import { AuthContext } from "../context/AuthProvider";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../components/init-firebase";
-import { ColectionDatabase } from "../components/init-firebase";
-import { onValue, get } from "firebase/database";
+import { ColectionDatabase, database } from "../components/init-firebase";
+import { onValue, get, ref } from "firebase/database";
 
 const ProfilePage = () => {
-  const [Values, setValues] = useState([]);
   const { currentUser } = useContext(AuthContext);
 
-  useEffect(() => {
-    get(ColectionDatabase).then((snapshot) => {
-      snapshot.forEach((childSnapshot) => {
-        //console.log([childSnapshot.val().title,childSnapshot.val().category]);
-        setValues(childSnapshot.val());
-      });
-    });
-  }, []);
-  {
-    Object.keys(Values).map((key) => {
-      console.log({ key: Values[key] });
-    });
+  if (!currentUser) {
+    return <h1>please log in first</h1>;
   }
+
+  const [Values, setValues] = useState([]);
+  if (currentUser) {
+    const ColectionDatabase = ref(database, "users/" + currentUser.uid);
+    useEffect(() => {
+      get(ColectionDatabase).then((snapshot) => {
+        console.log(snapshot.val());
+        setValues(snapshot.val());
+        // snapshot.forEach((childSnapshot) => {
+        //   //console.log([childSnapshot.val().title,childSnapshot.val().category]);
+        //   setValues(childSnapshot.val());
+        // });
+      });
+    }, []);
+  }
+
+  // {
+  //   Object.keys(Values).map((key) => {
+  //     console.log({ key: Values[key] });
+  //   });
+  // }
 
   return (
     <>
@@ -32,7 +42,9 @@ const ProfilePage = () => {
         {currentUser && (
           <>
             <br></br>
-            <p>{currentUser.email}</p>
+            <p>{Values.email}</p>
+            <p>{Values.fullname}</p>
+            <p>{Values.phoneNumber}</p>
           </>
         )}
 
