@@ -7,8 +7,11 @@ To be able to add product into cart and have a functional button
 
 npm i react-use-cart
 
-<<<<<<< HEAD
 npm install firebase --save
-=======
+
 npm i --save react-select
->>>>>>> refs/remotes/origin/main
+
+
+npm install @mui/material @emotion/react @emotion/styled
+
+npm install @mui/icons-material @mui/material @emotion/styled @emotion/react

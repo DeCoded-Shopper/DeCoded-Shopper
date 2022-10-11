@@ -15,7 +15,7 @@ import {getAuth,
       sendPasswordResetEmail,
       signOut } from 'firebase/auth';
 
-import {getFirestore} from 'firebase/firestore'
+import { collection, getDocs, getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -38,6 +38,10 @@ const analytics = getAnalytics(app);
 
 export const database = getDatabase(app); //get the realtime database
 export const auth = getAuth(app);
+
+// const firestoreDatabase = getFirestore();
+const ColectionDatabase = ref(database, 'products/'); 
+export { ColectionDatabase };
 
 //saves data to real time database 
 function createData(userID, email, name, number,location){
@@ -127,6 +131,7 @@ export function getUserinfo(){
 
 export function readData(){
   const userid = getCurrentUser();
+  console.log(userid);
   const dbRef = ref(database, 'users/');
   let name;
   onValue(dbRef, (DataSnapshot) =>{

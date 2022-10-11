@@ -11,7 +11,7 @@ import { AuthProvider } from './context/AuthProvider';
 import { CartProvider } from 'react-use-cart';
 import "./index.css";
 
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import { BrowserRouter as Router, Route, Routes,} from "react-router-dom"
 
 function App() {
   return (
@@ -19,13 +19,14 @@ function App() {
     <CartProvider>
     <AuthProvider>
     <Navbar />
+
       <div className="container">
-        
-          <Routes>
+     
+          <Routes><Route path='/' element={<Products/>}/>
+            <Route path='/products' element={<Products/>}/>
             <Route path="/login" element={<Login />} />
             <Route path="/wishlist" element={<WishList />} />
             <Route path="/register" element={<Register/>}/>
-            <Route path='/products' element={<Products/>}/>
             <Route path='/profilepage' element={<ProfilePage/>}/>
           </Routes>
         
