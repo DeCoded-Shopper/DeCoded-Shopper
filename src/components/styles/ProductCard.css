@@ -2,8 +2,12 @@
   margin: 3px;
   height: 240px;
   width: 100%;
-  border: solid black 1px;
+  /* border: solid black 1px; */
   border-radius: 2%;
+  background-color: white;
+}
+.CardContainer:hover {
+  transform: scale(1.02);
 }
 
 .btn-success {
@@ -34,5 +38,5 @@
 
 .card-img-top:hover {
   border-radius: 1%;
-  transform: scale(1.6);
+  transform: scale(1.85);
 }

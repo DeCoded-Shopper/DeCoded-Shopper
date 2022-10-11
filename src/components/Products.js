@@ -35,29 +35,35 @@ const Products = () => {
     // loading all the product items in a products saying
 
     <>
-      {/* <Select
-        className="select"
-        classNamePrefix="Category"
-        isClearable={true}
-        isSearchable={true}
-        colour="Black"
-        name="Category"
-        defaultValue={selectedOption}
-        onChange={setSelectedOption}
-        options={options}
-      /> */}
-
-      {/* <div className="searchInput_Container">
-        <input
-          id="searchInput"
-          type="text"
-          placeholder="Search Product..."
-          onChange={(event) => {
-            setSearchTerm(event.target.value);
-          }}
+      <div className="flitter__bar">
+        <Select
+          className="select"
+          classNamePrefix="Category"
+          isClearable={true}
+          isSearchable={true}
+          colour="Black"
+          name="Category"
+          defaultValue={selectedOption}
+          onChange={setSelectedOption}
+          options={options}
         />
-      </div> */}
-      <div className="products-container">
+
+        <div className="searchInput_Container">
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Search Product..."
+            onChange={(event) => {
+              setSearchTerm(event.target.value);
+            }}
+          />
+        </div>
+      </div>
+
+      <div>
+        <p>click to view recomandations</p>
+      </div>
+      <div className="products__container">
         {data
           .filter((val) => {
             if (selectedOption == null) {
