@@ -2,6 +2,7 @@ import React from "react";
 import { Form } from "react-router-dom";
 import { useCart } from "react-use-cart";
 import "./styles/wishlist.css";
+
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 const Wishlist = () => {
@@ -24,6 +25,7 @@ const Wishlist = () => {
       sum += item.price;
     });
   }
+  sum = sum.toFixed(2);
 
   console.log(sum);
   return (

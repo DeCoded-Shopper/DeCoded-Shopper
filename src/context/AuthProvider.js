@@ -22,7 +22,6 @@ export const AuthProvider = ({ children }) => {
     //signOut(auth);
     return auth.signOut();
   }
-
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
