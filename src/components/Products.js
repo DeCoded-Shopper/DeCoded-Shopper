@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./styles/Product.css";
+
 import ProductCard from "./ProductCard";
 import axios from "axios";
+
 import Select from "react-select";
 
-const Products = () => {
+const Products = () => 
+{
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
@@ -15,6 +18,7 @@ const Products = () => {
     { value: "men's clothing", label: "men's clothing" },
     { value: "women's clothing", label: "women's clothing" },
   ];
+
   const [selectedOption, setSelectedOption] = useState(null);
 
   // this will get all items from a nAPI
@@ -63,26 +67,34 @@ const Products = () => {
       <div>
         <p>click to view recomandations</p>
       </div>
+      
       <div className="products__container">
+        
         {data
-          .filter((val) => {
-            if (selectedOption == null) {
+          .filter((val) => 
+          {
+            if (selectedOption == null) 
+            {
               return val;
-            } else if (val.category == selectedOption.value) {
+            } else if (val.category == selectedOption.value) 
+            {
               console.log(selectedOption.value);
               return val;
             }
           })
+
           .filter((val) => {
             if (searchTerm == "") {
               return val;
-            } else if (
+            }
+             else if (
               val.title.toLowerCase().includes(searchTerm.toLowerCase())
             ) {
               return val;
             }
           })
-          .map((val) => {
+          .map((val) => 
+          {
             return (
               <ProductCard
                 title={val.title}
@@ -93,6 +105,7 @@ const Products = () => {
               />
             );
           })}
+
         <div className="">
           {loading && (
             <div>
@@ -100,6 +113,7 @@ const Products = () => {
               <h1>Loading...</h1>
             </div>
           )}
+
         </div>
       </div>
     </>

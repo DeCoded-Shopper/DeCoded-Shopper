@@ -1,17 +1,18 @@
-
 import React from "react";
 import { useRef, useState, useEffect, useContext } from 'react';
 import {AuthContext} from "../context/AuthProvider";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+
 import {useAuthContext} from "../context/AuthProvider";
-
-
 import Register from './Register';
+
 const LOGIN_URL = '/auth';
 
-const Login = () => {
+const Login = () => 
+{
     const { login } = useAuthContext();
 
     const userRef = useRef();
@@ -40,6 +41,7 @@ const Login = () => {
     useEffect(() => {
         setErrMsg('');
     }, [email, pwd])
+    
     useEffect(() => {
         setValidPwd(PWD_REGEX.test(pwd));
     }, [pwd])
@@ -48,6 +50,7 @@ const Login = () => {
         setValidEmail(EMAIL_REGEX.test(email));
     },[email])
 
+    //This is a user's way to switch pages after logging and access more data on the webpage 
     const handleSubmit = async (e) => {
        e.preventDefault();
 
@@ -63,16 +66,23 @@ const Login = () => {
                 <section>
                     <h1>You are logged in!</h1>
                     <br />
+                    
                     <p>
                         <a href="#">Go to Home</a>
                     </p>
+                    
                 </section>
             ) : (
                 <section >
+                    
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+                    
                     <h1>Sign In</h1>
+
                     <form onSubmit={handleSubmit}>
+                        
                         <label htmlFor="email">Email:</label>
+                        
                         <input
                             type="text"
                             id="email"
@@ -86,12 +96,14 @@ const Login = () => {
                             onFocus={() => setEmailFocus(true)}
                             onBlur={() => setEmailFocus(false)}
                         />
+                        
                         <p id="uidnote" className={emailFocus && email && !validEmail ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
                             Enter a valid email.<br />
                         </p>
 
                         <label htmlFor="password">Password:</label>
+                        
                         <input
                             type="password"
                             id="password"
@@ -103,6 +115,7 @@ const Login = () => {
                             onFocus={() => setPwdFocus(true)}
                             onBlur={() => setPwdFocus(false)}
                         />
+
                         <p id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
                             8 to 24 characters.<br />

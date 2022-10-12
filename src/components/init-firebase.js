@@ -1,7 +1,6 @@
 // Import the functions you need from the SDKs you need
 
 import { initializeApp } from "firebase/app";
-
 import { getAnalytics } from "firebase/analytics";
 
 import { getDatabase, set, ref, onValue } from "firebase/database";
@@ -34,18 +33,20 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
 const analytics = getAnalytics(app);
 
-export const database = getDatabase(app); //get the realtime database
-export const auth = getAuth(app);
+//get the realtime database
+export const database = getDatabase(app); 
+//Authorization from Firebase for app
+export const auth = getAuth(app); 
 
 // const firestoreDatabase = getFirestore();
 // const ColectionDatabase = ref(database, "users/");
 // export { ColectionDatabase };
 
 //saves data to real time database
-function createData(userID, email, name, number, location) {
+function createData(userID, email, name, number, location) 
+{
   set(ref(database, "users/" + userID), {
     userID: userID,
     email: email,
@@ -55,8 +56,11 @@ function createData(userID, email, name, number, location) {
   });
 }
 
-export function createUsers(email, password, name, phone, location) {
+//these are the conditions for creating an account
+export function createUsers(email, password, name, phone, location) 
+{
   let status;
+  //this is to succesfully create an account
   try {
     createUserWithEmailAndPassword(auth, email, password).then(
       (userCredential) => {
@@ -68,12 +72,17 @@ export function createUsers(email, password, name, phone, location) {
     );
     status = "done";
     console.log(status);
-  } catch (error) {
+  } 
+  // This is the case when the account already exists in the system
+  catch (error) {
     const errorMessage = error.message;
     if (errorMessage === "Firebase: Error (auth/email-already-in-use).") {
       console.log(errorMessage);
       alert("Email already exists");
-    } else {
+    }
+    //Display error message
+     else 
+    {
       console.log(errorMessage);
     }
 
@@ -84,14 +93,19 @@ export function createUsers(email, password, name, phone, location) {
   return status;
 }
 
-export const loginUser = (email, password) => {
+//These are conditions for an already existing account
+export const loginUser = (email, password) => 
+{
   let errorMessage;
+  //Try to see if the input data matches data on database
   try {
     const res = signInWithEmailAndPassword(auth, email, password);
     const user = res.user;
     console.log("user has logged in");
     errorMessage = "success";
-  } catch (error) {
+  }
+  //Error message should occur when input data doesn't match data on database 
+  catch (error) {
     errorMessage = "error";
     console.log(error.message);
     alert("An error has occured");
@@ -100,12 +114,16 @@ export const loginUser = (email, password) => {
   return errorMessage;
 };
 
-function getCurrentUser() {
+//This is to get data about the user and show it on profile
+function getCurrentUser() 
+{
   const user = auth.currentUser;
   return user.uid;
 }
 
-export function resetPass(email) {
+//This is used to get an email that will give a user a chance to reset their password
+export function resetPass(email) 
+{
   let errorMessage;
   try {
     const res = sendPasswordResetEmail(auth, email);
@@ -123,12 +141,16 @@ export function resetPass(email) {
   return errorMessage;
 }
 
-export function getUserinfo() {
+//This is to show the user's information
+export function getUserinfo() 
+{
   const info = readData();
   return info;
 }
 
-export function readData() {
+//This is to read data from database
+export function readData() 
+{
   const userid = getCurrentUser();
   console.log(userid);
   const dbRef = ref(database, "users/");
