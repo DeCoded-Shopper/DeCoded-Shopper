@@ -2,13 +2,11 @@ import React, { useState, useEffect } from "react";
 import { AuthContext } from "../context/AuthProvider";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { logout } from "../components/init-firebase";
 import { ColectionDatabase, database } from "../components/init-firebase";
 import { onValue, get, ref } from "firebase/database";
 
 const ProfilePage = () => {
-  const { currentUser } = useContext(AuthContext);
-
+  const { currentUser, logout } = useContext(AuthContext);
   if (!currentUser) {
     return <h1>please log in first</h1>;
   }
@@ -27,6 +25,7 @@ const ProfilePage = () => {
       });
     }, []);
   }
+  const navigate = useNavigate();
 
   // {
   //   Object.keys(Values).map((key) => {
@@ -48,7 +47,15 @@ const ProfilePage = () => {
           </>
         )}
 
-        <button type="submit" onClick={logout}>
+        <button
+          type="submit"
+          onClick={() => {
+            navigate("/Products", { replace: true });
+            {
+              logout();
+            }
+          }}
+        >
           Log out
         </button>
       </section>

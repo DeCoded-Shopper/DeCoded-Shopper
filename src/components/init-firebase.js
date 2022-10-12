@@ -14,7 +14,6 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
-  signOut,
 } from "firebase/auth";
 
 import { collection, getDocs, getFirestore } from "firebase/firestore";
@@ -42,8 +41,8 @@ export const database = getDatabase(app); //get the realtime database
 export const auth = getAuth(app);
 
 // const firestoreDatabase = getFirestore();
-const ColectionDatabase = ref(database, "users/");
-export { ColectionDatabase };
+// const ColectionDatabase = ref(database, "users/");
+// export { ColectionDatabase };
 
 //saves data to real time database
 function createData(userID, email, name, number, location) {
@@ -143,7 +142,3 @@ export function readData() {
   });
   return name;
 }
-
-export const logout = () => {
-  signOut(auth);
-};
