@@ -6,12 +6,14 @@ import { ColectionDatabase, database } from "../components/init-firebase";
 import { onValue, get, ref } from "firebase/database";
 
 const ProfilePage = () => {
+  const navigate = useNavigate();
+  const [Values, setValues] = useState([]);
   const { currentUser, logout } = useContext(AuthContext);
   if (!currentUser) {
     return <h1>please log in first</h1>;
   }
 
-  const [Values, setValues] = useState([]);
+  
   if (currentUser) {
     const ColectionDatabase = ref(database, "users/" + currentUser.uid);
     useEffect(() => {
@@ -25,7 +27,7 @@ const ProfilePage = () => {
       });
     }, []);
   }
-  const navigate = useNavigate();
+  
 
   // {
   //   Object.keys(Values).map((key) => {
