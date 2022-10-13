@@ -63,7 +63,6 @@ const Products = () =>
           />
         </div>
       </div>
-<<<<<<< HEAD
 
       <div>
         <p>Recomanded Products</p>
@@ -99,15 +98,6 @@ const Products = () =>
       <div className="products__container">
         
         
-=======
-
-      <div>
-        <p>click to view recomandations</p>
-      </div>
-      
-      <div className="products__container">
-        
->>>>>>> refs/remotes/DeCoded-Shopper/main
         {data
           .filter((val) => 
           {
@@ -154,12 +144,9 @@ const Products = () =>
 
         </div>
       </div>
-<<<<<<< HEAD
 
       </div>
      
-=======
->>>>>>> refs/remotes/DeCoded-Shopper/main
     </>
   );
 };
