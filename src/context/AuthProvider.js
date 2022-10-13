@@ -1,13 +1,7 @@
 import React, { useEffect } from "react";
 import { createContext, useState } from "react";
 import { auth } from "../components/init-firebase";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  sendPasswordResetEmail,
-  signOut,
-  onAuthStateChanged,
-} from "firebase/auth";
+import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { logout } from "../components/init-firebase";
 
 export const AuthContext = createContext();
@@ -30,7 +24,7 @@ export const AuthProvider = ({ children }) => {
       } else {
         //user is not signed (has no access to the database)
         setCurrentUser(null);
-        console.log("Go back to Sign in");
+        // console.log("Go back to Sign in");
       }
     });
   });

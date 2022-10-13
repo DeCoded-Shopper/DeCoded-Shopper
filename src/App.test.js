@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, cleanup } from "@testing-library/react";
+import { render, screen, cleanup, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
@@ -9,10 +9,25 @@ import WishList from "./components/WishList";
 import Products from "./components/Products";
 import App from "./App";
 import { AuthProvider } from "./context/AuthProvider";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import ProfilePage from "./components/ProfilePage";
 
 afterEach(cleanup);
+
+test("Testing back to homepage buton", () => {
+  render(
+    <Router>
+      <AuthProvider>
+        <Navbar />
+      </AuthProvider>
+    </Router>
+  );
+  const NavbarHomebuttonElement = screen.getByText(/decoded shopper/i);
+  expect(NavbarHomebuttonElement).toBeInTheDocument();
+  fireEvent.click(NavbarHomebuttonElement);
+  const reloadHomepage = screen.getByText(/decoded shopper/i);
+  expect(reloadHomepage).toBeInTheDocument();
+});
 
 // teting the web footer
 test("test footer", () => {
@@ -36,18 +51,6 @@ test("test products search", () => {
   render(<Products />);
   const ProductsSearchElement = screen.getByRole("textbox");
   expect(ProductsSearchElement).toBeInTheDocument();
-});
-
-test("test Navbar header", () => {
-  render(
-    <Router>
-      <AuthProvider>
-        <Navbar />
-      </AuthProvider>
-    </Router>
-  );
-  const NavbarHeadElement = screen.getByText(/decoded shopper/i);
-  expect(NavbarHeadElement).toBeInTheDocument();
 });
 
 test("test Navbar list", () => {

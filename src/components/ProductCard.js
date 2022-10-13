@@ -1,11 +1,8 @@
 import React from "react";
 import "./styles/ProductCard.css";
 import { useCart } from "react-use-cart";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { red } from "@mui/material/colors";
 import { useState } from "react";
 import styled from "styled-components";
-import { border } from "@mui/system";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 
 const ProductCard = (proparty) => {
@@ -29,16 +26,17 @@ const ProductCard = (proparty) => {
 
   const { addItem } = useCart();
   return (
-    <div class="CardContainer">
-      <div class="card-body">
-        <h6 class="card-title">{proparty.title}</h6>
+    <div className="CardContainer">
+      <div className="card-body">
+        <h6 className="card-title">{proparty.title}</h6>
         {/* <h6 class="card-text">{proparty.category}</h6> */}
       </div>
       <div>
-        <img src={proparty.img} class="card-img-top" alt="" />
+        <img src={proparty.img} className="card-img-top" alt="" />
       </div>
       <ChangeIconColorOnce>
         <button
+          data-testid="adding_towishlist"
           style={{
             color: iconOneColor,
             backgroundColor: "transparent",
@@ -47,6 +45,7 @@ const ProductCard = (proparty) => {
           onClick={RedColor}
         >
           <FavoriteOutlinedIcon
+            data-testid="adding_wishlist"
             onClick={() => {
               addItem(proparty.item);
             }}

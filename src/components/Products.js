@@ -17,7 +17,7 @@ const Products = () => {
   ];
   const [selectedOption, setSelectedOption] = useState(null);
 
-  // this will get all items from a nAPI
+  // this will get all items from an API
   useEffect(() => {
     setLoading(true);
     axios({
@@ -47,7 +47,6 @@ const Products = () => {
           onChange={setSelectedOption}
           options={options}
         />
-
         <div className="searchInput_Container">
           <input
             id="searchInput"

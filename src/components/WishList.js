@@ -1,8 +1,6 @@
 import React from "react";
-import { Form } from "react-router-dom";
 import { useCart } from "react-use-cart";
 import "./styles/wishlist.css";
-
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 const Wishlist = () => {
@@ -17,8 +15,9 @@ const Wishlist = () => {
   //this massage will display if the wishlist is empth
 
   let sum = 0;
-  if (isEmpty)
-    return <h1 className="text-center">Your shopping wishlist is empty </h1>;
+  // if (isEmpty) {
+  //   return <h1 className="text-center">Your shopping wishlist is empty </h1>;
+  // }
 
   if (!isEmpty) {
     items.map((item) => {
@@ -26,11 +25,14 @@ const Wishlist = () => {
     });
   }
   sum = sum.toFixed(2);
-
-  console.log(sum);
   return (
     // this will return table of all items in wishlist
     <>
+      <div className="totalitem__wishlist">
+        <p data-testid="wishlisttotal-items">
+          Wishlist total items: {totalItems}
+        </p>
+      </div>
       <table className="wishlist__table">
         {items.map((item, index) => {
           return (
@@ -59,9 +61,10 @@ const Wishlist = () => {
         })}
       </table>
       <div className="total__wishlist">
-        <p>Wishlist price total: R {sum}</p>
+        <p data-testid="wishlisttotal-amount">Wishlist price total: R {sum}</p>
       </div>
       <button
+        data-testid="clear_all"
         onClick={() => {
           items.map((item) => {
             removeItem(item.id);
