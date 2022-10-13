@@ -1,47 +1,46 @@
 import React, { useState, useEffect } from "react";
-import "../Product.css";
+import "./styles/Product.css";
+
 import ProductCard from "./ProductCard";
 import axios from "axios";
-import Select from 'react-select';
 
+import Select from "react-select";
 
-const Products = () => {
+const Products = () => 
+{
+  const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
 
+  const options = [
+    { value: "electronics", label: "electronics" },
+    { value: "jewelery", label: "jewelery" },
+    { value: "men's clothing", label: "men's clothing" },
+    { value: "women's clothing", label: "women's clothing" },
+  ];
 
-      const [searchTerm, setSearchTerm] = useState("");
-      const [loading, setLoading] = useState(false);
-      const [data, setData] = useState([]);
+  const [selectedOption, setSelectedOption] = useState(null);
 
-      const options = [
-        { value: 'electronics', label: 'electronics' },
-        { value: 'jewelery', label: 'jewelery' },
-        { value: "men's clothing", label: "men's clothing" },
-        {value:"women's clothing",label:"women's clothing"}
-      ];
-      const [selectedOption, setSelectedOption] = useState(null);
+  // this will get all items from a nAPI
+  useEffect(() => {
+    setLoading(true);
+    axios({
+      method: "GET",
+      url: "https://fakestoreapi.com/products/",
+    })
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((e) => console.log(e))
+      .finally(() => setLoading(false));
+  }, []);
 
-      
+  return (
+    // loading all the product items in a products saying
 
-    // this will get all items from a nAPI
-    useEffect(() => {
-        setLoading(true);
-        axios({
-        method: "GET",
-        url: "https://fakestoreapi.com/products/",
-        })
-        .then((res) => {
-            console.log(res.data);
-            setData(res.data);
-        })
-        .catch((e) => console.log(e))
-        .finally(() => setLoading(false));
-    }, []);
-
-    return(
-      // loading all the product items in a products saying
-      
     <>
-            <Select
+      <div className="flitter__bar">
+        <Select
           className="select"
           classNamePrefix="Category"
           isClearable={true}
@@ -52,55 +51,104 @@ const Products = () => {
           onChange={setSelectedOption}
           options={options}
         />
-    
-      <div className="searchInput_Container">
-        <input id="searchInput" type="text" placeholder="Search Product..." onChange={(event) => {
-          setSearchTerm(event.target.value);
-        }} />
 
+        <div className="searchInput_Container">
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Search Product..."
+            onChange={(event) => {
+              setSearchTerm(event.target.value);
+            }}
+          />
+        </div>
       </div>
-      <div className="products-container">
+
+      <div>
+        <p>Recomanded Products</p>
+        <div className="products__container">
+        {data
+          .filter((val) => 
+          {
+            if(val.rating.rate>4.6){
+              return val;
+            }
+          })
+
+          .map((val) => 
+          {
+            return (
+              <ProductCard
+                title={val.title}
+                category={val.category}
+                img={val.image}
+                item={val}
+                key={val}
+              />
+            );
+          })}
+
           
-        {
-          data 
-            .filter((val) => {
 
-              if(selectedOption==null){
-                return val;
-                
-              }
-              else if(val.category==selectedOption.value){
-                console.log(selectedOption.value);
-                return val;
-              }
-            })
-            .filter((val)=>{
-              if(searchTerm == ""){
-                return val;
-              }else if(val.title.toLowerCase().includes(searchTerm.toLowerCase())){
-                return val;
-              }
-            })
-            .map((val) => {
-              return(
-                <ProductCard title={val.title} category={val.category} img={val.image} item={val} key={val} />
-              )
-            })
-        }
+
+        </div>
+      </div>
+      <div>
+      <p>All Products</p>
+      <div className="products__container">
+        
+        
+        {data
+          .filter((val) => 
+          {
+            if (selectedOption == null) 
+            {
+              return val;
+            } else if (val.category == selectedOption.value) 
+            {
+              console.log(selectedOption.value);
+              return val;
+            }
+          })
+
+          .filter((val) => {
+            if (searchTerm == "") {
+              return val;
+            }
+             else if (
+              val.title.toLowerCase().includes(searchTerm.toLowerCase())
+            ) {
+              return val;
+            }
+          })
+          .map((val) => 
+          {
+            return (
+              <ProductCard
+                title={val.title}
+                category={val.category}
+                img={val.image}
+                item={val}
+                key={val}
+              />
+            );
+          })}
+
         <div className="">
-      {loading && (
-        <div>
-        {" "}
-        <h1>Loading...</h1>
-      </div>
-    )}
-      </div>
-    </div>
-  </>
-  );
+          {loading && (
+            <div>
+              {" "}
+              <h1>Loading...</h1>
+            </div>
+          )}
 
+        </div>
+      </div>
 
+      </div>
      
+    </>
+  );
 };
 
 export default Products;
