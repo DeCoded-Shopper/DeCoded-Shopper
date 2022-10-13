@@ -17,7 +17,6 @@ const Products = () => {
     { value: "men's clothing", label: "men's clothing" },
     { value: "women's clothing", label: "women's clothing" },
   ];
-
   const [selectedOption, setSelectedOption] = useState(null);
 
   // this will get all items from an API
@@ -38,7 +37,7 @@ const Products = () => {
     // loading all the product items in a products saying
 
     <>
-      <div className="flitter__bar">
+      <div data-testid="search-manager" className="flitter__bar">
         <Select
           className="select"
           classNamePrefix="Category"
@@ -64,7 +63,10 @@ const Products = () => {
 
       <div>
         <p>Recomanded Products</p>
-        <div className="recomanded__container">
+        <div
+          data-testid="productstotal-items"
+          className="recomanded__container"
+        >
           {data
             .filter((val) => {
               if (val.rating.rate > 4.6) {
@@ -87,13 +89,13 @@ const Products = () => {
       </div>
       <div>
         <p>All Products</p>
-        <div className="products__container">
+
+        <div data-testid="allproducts-div" className="products__container">
           {data
             .filter((val) => {
               if (selectedOption == null) {
                 return val;
               } else if (val.category == selectedOption.value) {
-                console.log(selectedOption.value);
                 return val;
               }
             })

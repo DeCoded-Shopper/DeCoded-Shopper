@@ -44,6 +44,11 @@ test("test footer", () => {
 });
 
 // teting the products loader
+test("test search and category div ", () => {
+  render(<Products />);
+  const SearchDivElement = screen.getByTestId("search-manager");
+  expect(SearchDivElement).toBeInTheDocument();
+});
 
 test("test products loading", () => {
   render(<Products />);
@@ -53,7 +58,12 @@ test("test products loading", () => {
   expect(ProductsLoadingElement).toBeInTheDocument();
 });
 
-// t
+test("test products search by category", () => {
+  render(<Products />);
+  const SearchCategotyElement = screen.getByRole("combobox");
+  expect(SearchCategotyElement).toBeInTheDocument();
+});
+
 test("test products search", () => {
   render(<Products />);
   const ProductsSearchElement = screen.getByRole("textbox");
@@ -142,3 +152,29 @@ test("test register butoon input", () => {
   });
   userEvent.click(SignInElement);
 });
+
+test("test profile page", () => {
+  render(
+    <Router>
+      <AuthProvider>
+        <ProfilePage />
+      </AuthProvider>
+    </Router>
+  );
+  const profileHeaderElement = screen.getByRole("heading", {
+    name: /please log in first/i,
+  });
+  expect(profileHeaderElement).toBeInTheDocument();
+});
+
+// test("test profile page logout", () => {
+//   render(
+//     <Router>
+//       <AuthProvider>
+//         <ProfilePage />
+//       </AuthProvider>
+//     </Router>
+//   );
+//   const profileLogoutElement = screen.getByTestId("logout-button");
+//   expect(profileLogoutElement).toBeInTheDocument();
+// });
