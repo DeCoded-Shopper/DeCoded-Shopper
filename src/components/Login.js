@@ -1,9 +1,13 @@
 import React from "react";
 import { useRef, useState, useEffect, useContext } from "react";
+import { AuthContext } from "../context/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthProvider";
+
+import Register from "./Register";
+const LOGIN_URL = "/auth";
 
 const Login = () => {
   const { login } = useAuthContext();

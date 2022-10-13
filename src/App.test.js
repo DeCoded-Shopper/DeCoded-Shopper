@@ -29,6 +29,13 @@ test("Testing back to homepage buton", () => {
   expect(reloadHomepage).toBeInTheDocument();
 });
 
+test("Testing recomanded", () => {
+  render(<Products />);
+
+  const recomendedElement = screen.getByText(/recomanded products/i);
+  expect(recomendedElement).toBeInTheDocument();
+});
+
 // teting the web footer
 test("test footer", () => {
   render(<Footer />);

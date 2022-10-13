@@ -1,33 +1,55 @@
 import React, { useState, useEffect } from "react";
 import { AuthContext } from "../context/AuthProvider";
+
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { database } from "../components/init-firebase";
-import { get, ref } from "firebase/database";
+import { ColectionDatabase, database } from "../components/init-firebase";
+import { onValue, get, ref } from "firebase/database";
 
 const ProfilePage = () => {
+  const navigate = useNavigate();
+  const [Values, setValues] = useState([]);
   const { currentUser, logout } = useContext(AuthContext);
+
   if (!currentUser) {
     return <h1>please log in first</h1>;
   }
 
-  const [Values, setValues] = useState([]);
+  //A condition to show the user's information on the profile page
   if (currentUser) {
     const ColectionDatabase = ref(database, "users/" + currentUser.uid);
-    useEffect(() => {
-      get(ColectionDatabase).then((snapshot) => {
-        console.log(snapshot.val());
-        setValues(snapshot.val());
-      });
-    }, []);
+
+    get(ColectionDatabase).then((snapshot) => {
+      console.log(snapshot.val());
+      setValues(snapshot.val());
+    });
+  } else {
+    return null;
   }
-  const navigate = useNavigate();
+
+  // useEffect(() => {
+  // if (currentUser)
+  // {
+  //   const ColectionDatabase = ref(database, "users/" + currentUser.uid);
+
+  //     get(ColectionDatabase).then((snapshot) => {
+  //       console.log(snapshot.val());
+  //       setValues(snapshot.val());
+  //       // snapshot.forEach((childSnapshot) => {
+  //       //   //console.log([childSnapshot.val().title,childSnapshot.val().category]);
+  //       //   setValues(childSnapshot.val());
+  //       // });
+  //     });
+  //   }
+  // }, []);
 
   return (
+    //This allows for user to see their information and also be able to logout.
     <>
       <section>
         <p>MY PROFILE</p>
         <br></br>
+
         {currentUser && (
           <>
             <br></br>
@@ -52,4 +74,5 @@ const ProfilePage = () => {
     </>
   );
 };
+
 export default ProfilePage;

@@ -1,8 +1,18 @@
+.recomanded__container {
+  width: 100%;
+  min-height: 35vh;
+  display: grid;
+  column-gap: 8px;
+  row-gap: 5px;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+}
+
 .products__container {
   width: 100%;
   min-height: 50vh;
   display: grid;
-  column-gap: 5px;
+  column-gap: 8px;
   row-gap: 5px;
   grid-template-columns: repeat(4, 1fr);
   justify-items: center;

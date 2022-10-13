@@ -1,6 +1,7 @@
 import React from "react";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { createUsers } from "./init-firebase";
@@ -10,11 +11,13 @@ import Login from './Login';
 const USER_REGEX = /^[A-z]+ [A-z]{3,23}$/;
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const PHONE_REGEX = /^[0-9]{10}$/;
+
 const LOCATION_REGEX = /^\d{10}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const REGISTER_URL = '/register';
 
-const Register = () => {
+const Register = () => 
+{
     const navigate = useNavigate();
     const userRef = useRef();
     const errRef = useRef();
@@ -47,80 +50,110 @@ const Register = () => {
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
-    useEffect(() => {
+    //These are functions for the user to validate their input
+    useEffect(() => 
+    {
         userRef.current.focus();
     }, [])
-
-    useEffect(() => {
+    
+    //This is a function for the user to validate their full name input
+    useEffect(() => 
+    {
         setValidName(USER_REGEX.test(user));
     }, [user])
 
-    useEffect(() => {
+    //This is a function for the user to validate their password input
+    useEffect(() => 
+    {
         setValidPwd(PWD_REGEX.test(pwd));
         setValidMatch(pwd === matchPwd);
     }, [pwd, matchPwd])
     
-    useEffect(()=>{
+    //This is a function for the user to validate their email input
+    useEffect(()=>
+    {
         setValidEmail(EMAIL_REGEX.test(email));
     },[email])
 
-    useEffect(()=>{
+    //This is a function for the user to validate their phone number input
+    useEffect(()=>
+    {
         setValidPhone(PHONE_REGEX.test(phone));
     },[phone])
 
-    useEffect(()=>{
+    //This is a function for the user to validate their location input
+    useEffect(()=>
+    {
         setValidlocation(LOCATION_REGEX.test(location));
     },[location])
 
-    useEffect(() => {
+    //This is a function for the user to validate their input
+    useEffect(() => 
+    {
         setErrMsg('');
     }, [user, pwd, matchPwd,phone,email,location])
 
-
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => 
+    {
         e.preventDefault();
         // if button enabled with JS hack
         const v1 = USER_REGEX.test(user);
         const v2 = PWD_REGEX.test(pwd);
+        
         const v3 = EMAIL_REGEX.test(email);
         const v4 = PHONE_REGEX.test(phone);
+        
         const v5 = LOCATION_REGEX.test(location);
+        
         if (!v1 || !v2 || !v3 || !v4 || !v5 ) {
             setErrMsg("Invalid Entry");
             return;
-        }else{
-            //create users on the database
+        }
+        else
+        {
+            // create users on the database
             const response = createUsers(email,pwd,user,phone,location);
             
-            if(response === "done"){ // if registration is successful
+            // if registration is successful
+            if(response === "done")
+            { 
                 navigate('/Login', {replace : true}); //change the pages 
-            }else{
-                //when registration is false
+            }
+            // when registration is false
+            else
+            {
                 alert("An error has occured");
             }
         }
-
     }
 
     return (
         <>
             {success ? (
+                
                 <section>
                     <h1>Success!</h1>
                     <p>
                         <a href="#">Sign In</a>
                     </p>
                 </section>
+
             ) : (
+                //These are the conditions that a user should meet to register their account
                 <section>
+                    
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+                    
                     <h1>Register</h1>
+                    
                     <form onSubmit={handleSubmit}>
+                        
                         <label htmlFor="username">
                             FullName:
                             <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
                             <FontAwesomeIcon icon={faTimes} className={validName || !user ? "hide" : "invalid"} />
                         </label>
+                        
                         <input
                             type="text"
                             id="username"
@@ -134,6 +167,7 @@ const Register = () => {
                             onFocus={() => setUserFocus(true)}
                             onBlur={() => setUserFocus(false)}
                         />
+                        
                         <p id="uidnote" className={userFocus && user && !validName ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
                             4 to 24 characters.<br />
@@ -146,6 +180,7 @@ const Register = () => {
                             <FontAwesomeIcon icon={faCheck} className={validEmail ? "valid" : "hide"} />
                             <FontAwesomeIcon icon={faTimes} className={validEmail || !email ? "hide" : "invalid"} />
                         </label>
+                        
                         <input
                             type="text"
                             id="email"
@@ -158,16 +193,18 @@ const Register = () => {
                             onFocus={() => setEmailFocus(true)}
                             onBlur={() => setEmailFocus(false)}
                         />
+                        
                         <p id="uidnote" className={emailFocus && email && !validEmail ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
                             Enter a valid email.<br />
                         </p>
-
+                        
                         <label htmlFor="phone">
                             Phone:
                             <FontAwesomeIcon icon={faCheck} className={validPhone ? "valid" : "hide"} />
                             <FontAwesomeIcon icon={faTimes} className={validPhone || !phone ? "hide" : "invalid"} />
                         </label>
+                        
                         <input
                             type="text"
                             id="phone"
@@ -180,6 +217,7 @@ const Register = () => {
                             onFocus={() => setPhoneFocus(true)}
                             onBlur={() => setPhoneFocus(false)}
                         />
+                        
                         <p id="uidnote" className={phoneFocus && phone && !validPhone ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
                             Enter valid phone number.<br />
@@ -192,6 +230,7 @@ const Register = () => {
                             <FontAwesomeIcon icon={faCheck} className={validLocation ? "valid" : "hide"} />
                             <FontAwesomeIcon icon={faTimes} className={validLocation || !location ? "hide" : "invalid"} />
                         </label>
+                        
                         <input
                             type="text"
                             id="location"
@@ -204,6 +243,7 @@ const Register = () => {
                             onFocus={() => setLocationFocus(true)}
                             onBlur={() => setLocationFocus(false)}
                         />
+                        
                         <p id="uidnote" className={locationFocus && location && !validLocation ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
                             Enter a valid location.<br />
@@ -216,6 +256,7 @@ const Register = () => {
                             <FontAwesomeIcon icon={faCheck} className={validPwd ? "valid" : "hide"} />
                             <FontAwesomeIcon icon={faTimes} className={validPwd || !pwd ? "hide" : "invalid"} />
                         </label>
+                        
                         <input
                             type="password"
                             id="password"
@@ -227,6 +268,7 @@ const Register = () => {
                             onFocus={() => setPwdFocus(true)}
                             onBlur={() => setPwdFocus(false)}
                         />
+                        
                         <p id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
                             8 to 24 characters.<br />
@@ -239,6 +281,7 @@ const Register = () => {
                             <FontAwesomeIcon icon={faCheck} className={validMatch && matchPwd ? "valid" : "hide"} />
                             <FontAwesomeIcon icon={faTimes} className={validMatch || !matchPwd ? "hide" : "invalid"} />
                         </label>
+                        
                         <input
                             type="password"
                             id="confirm_pwd"
@@ -250,19 +293,23 @@ const Register = () => {
                             onFocus={() => setMatchFocus(true)}
                             onBlur={() => setMatchFocus(false)}
                         />
+                        
                         <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
                             Must match the first password input field.
                         </p>
 
                         <button type="submit" disabled={!validName || !validPwd ||!validEmail||!validLocation||!validPhone ||!validMatch ? true : false}>Sign Up</button>
+
                     </form>
+                    
                     <p>
                         Already registered?<br />
                         <span className="line">
                             <a href="./login">Sign In</a>
                         </span>
                     </p>
+
                 </section>
             )}
         </>

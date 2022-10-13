@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./styles/Product.css";
+
 import ProductCard from "./ProductCard";
 import axios from "axios";
+
 import Select from "react-select";
 
 const Products = () => {
@@ -15,6 +17,7 @@ const Products = () => {
     { value: "men's clothing", label: "men's clothing" },
     { value: "women's clothing", label: "women's clothing" },
   ];
+
   const [selectedOption, setSelectedOption] = useState(null);
 
   // this will get all items from an API
@@ -60,45 +63,70 @@ const Products = () => {
       </div>
 
       <div>
-        <p>click to view recomandations</p>
+        <p>Recomanded Products</p>
+        <div className="recomanded__container">
+          {data
+            .filter((val) => {
+              if (val.rating.rate > 4.6) {
+                return val;
+              }
+            })
+
+            .map((val) => {
+              return (
+                <ProductCard
+                  title={val.title}
+                  category={val.category}
+                  img={val.image}
+                  item={val}
+                  key={val}
+                />
+              );
+            })}
+        </div>
       </div>
-      <div className="products__container">
-        {data
-          .filter((val) => {
-            if (selectedOption == null) {
-              return val;
-            } else if (val.category == selectedOption.value) {
-              console.log(selectedOption.value);
-              return val;
-            }
-          })
-          .filter((val) => {
-            if (searchTerm == "") {
-              return val;
-            } else if (
-              val.title.toLowerCase().includes(searchTerm.toLowerCase())
-            ) {
-              return val;
-            }
-          })
-          .map((val) => {
-            return (
-              <ProductCard
-                title={val.title}
-                category={val.category}
-                img={val.image}
-                item={val}
-                key={val}
-              />
-            );
-          })}
-        <div className="">
-          {loading && (
-            <div>
-              {" "}
-              <h1>Loading...</h1>
-            </div>
-          )}
+      <div>
+        <p>All Products</p>
+        <div className="products__container">
+          {data
+            .filter((val) => {
+              if (selectedOption == null) {
+                return val;
+              } else if (val.category == selectedOption.value) {
+                console.log(selectedOption.value);
+                return val;
+              }
+            })
+
+            .filter((val) => {
+              if (searchTerm == "") {
+                return val;
+              } else if (
+                val.title.toLowerCase().includes(searchTerm.toLowerCase())
+              ) {
+                return val;
+              }
+            })
+            .map((val) => {
+              return (
+                <ProductCard
+                  title={val.title}
+                  category={val.category}
+                  img={val.image}
+                  item={val}
+                  key={val}
+                />
+              );
+            })}
+
+          <div className="">
+            {loading && (
+              <div>
+                {" "}
+                <h1>Loading...</h1>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </>

@@ -6,8 +6,8 @@ import styled from "styled-components";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 
 const ProductCard = (proparty) => {
+  
   //this will return a card that consist of a product with button to add on wishlist
-
   const ChangeIconColorOnce = styled.div`
     height: 0.4rem;
     display: flex;
@@ -18,7 +18,8 @@ const ProductCard = (proparty) => {
 
   const [iconOneColor, setIconOneColor] = useState("gray");
 
-  const RedColor = () => {
+  const RedColor = () => 
+  {
     // The constant RedColor stores a function
     setIconOneColor("red");
     // that changes the value of iconOneColor to red
