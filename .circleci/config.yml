@@ -1,8 +1,8 @@
-version: '2.1'
-orbs: 
+version: "2.1"
+orbs:
   codecov: codecov/codecov@3.2.3
   node: circleci/node@5.0.2
-  
+
 jobs:
   test:
     docker:
@@ -12,7 +12,7 @@ jobs:
       - node/install-packages:
           cache-path: ~/project/node_modules
           override-ci-command: npm install
-      - run: 
+      - run:
           name: install npm
           command: sudo npm install -g npm@latest
       - run:
@@ -21,10 +21,19 @@ jobs:
       - run:
           name: install firebase
           command: npm install firebase --save
-      - run: 
+      - run:
+          name: install material ui
+          command: npm install @mui/material @emotion/react @emotion/styled --save
+      - run:
+          name: install material ui icons
+          command: npm install @mui/icons-material @mui/material @emotion/styled @emotion/react --save
+      - run:
+          name: install material ui styled
+          command: npm install --save styled-components --save
+      - run:
           name: run tests
           command: npm run test -- --coverage
-          
+
       - codecov/upload
 workflows:
   test_my_app:
