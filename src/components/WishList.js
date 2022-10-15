@@ -4,13 +4,7 @@ import "./styles/wishlist.css";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 const Wishlist = () => {
-  const {
-    isEmpty,
-    totalUniqueItems,
-    items,
-    totalItems,
-    removeItem,
-  } = useCart();
+  const { isEmpty, items, totalItems, removeItem } = useCart();
 
   //this massage will display if the wishlist is empth
 
@@ -20,7 +14,7 @@ const Wishlist = () => {
   // }
 
   if (!isEmpty) {
-    items.map((item) => {
+    items.forEach((item) => {
       sum += item.price;
     });
   }
@@ -36,13 +30,13 @@ const Wishlist = () => {
       <table className="wishlist__table">
         {items.map((item, index) => {
           return (
-            (<h1></h1>),
-            (
+            <tbody>
               <tr key={index}>
                 <td>
                   <img
                     src={item.image}
                     style={{ height: "6rem", width: "6rem" }}
+                    alt=""
                   ></img>
                 </td>
                 <td> {item.title} </td>
@@ -56,7 +50,7 @@ const Wishlist = () => {
                   </DeleteOutlineIcon>{" "}
                 </td>
               </tr>
-            )
+            </tbody>
           );
         })}
       </table>
@@ -66,7 +60,7 @@ const Wishlist = () => {
       <button
         data-testid="clear_all"
         onClick={() => {
-          items.map((item) => {
+          items.forEach((item) => {
             removeItem(item.id);
           });
         }}

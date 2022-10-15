@@ -1,13 +1,9 @@
 import React from "react";
-import { useRef, useState, useEffect, useContext } from "react";
-import { AuthContext } from "../context/AuthProvider";
+import { useRef, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthProvider";
-
-import Register from "./Register";
-const LOGIN_URL = "/auth";
 
 const Login = () => {
   const { login } = useAuthContext();
@@ -61,9 +57,6 @@ const Login = () => {
         <section>
           <h1>You are logged in!</h1>
           <br />
-          <p>
-            <a href="#">Go to Home</a>
-          </p>
         </section>
       ) : (
         <section>

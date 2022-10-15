@@ -29,6 +29,11 @@
   font-size: 17px;
   color: black;
 }
+.card-price {
+  font-weight: 400;
+  font-size: 15px;
+  color: black;
+}
 .card-img-top {
   width: 130px;
   height: 130px;

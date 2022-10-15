@@ -18,13 +18,15 @@ const Products = () => {
     { value: "women's clothing", label: "women's clothing" },
   ];
   const [selectedOption, setSelectedOption] = useState(null);
+  let dataUrl = "https://fakestoreapi.com/products/";
 
   // this will get all items from an API
   useEffect(() => {
     setLoading(true);
+    let datain = true;
     axios({
       method: "GET",
-      url: "https://fakestoreapi.com/products/",
+      url: dataUrl,
     })
       .then((res) => {
         setData(res.data);
@@ -78,6 +80,7 @@ const Products = () => {
               return (
                 <ProductCard
                   title={val.title}
+                  price={val.price}
                   category={val.category}
                   img={val.image}
                   item={val}
@@ -95,13 +98,13 @@ const Products = () => {
             .filter((val) => {
               if (selectedOption == null) {
                 return val;
-              } else if (val.category == selectedOption.value) {
+              } else if (val.category === selectedOption.value) {
                 return val;
               }
             })
 
             .filter((val) => {
-              if (searchTerm == "") {
+              if (searchTerm === "") {
                 return val;
               } else if (
                 val.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -113,6 +116,7 @@ const Products = () => {
               return (
                 <ProductCard
                   title={val.title}
+                  price={val.price}
                   category={val.category}
                   img={val.image}
                   item={val}

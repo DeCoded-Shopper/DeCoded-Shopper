@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { AuthContext } from "../context/AuthProvider";
 
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { ColectionDatabase, database } from "../components/init-firebase";
-import { onValue, get, ref } from "firebase/database";
+import { database } from "../components/init-firebase";
+import { get, ref } from "firebase/database";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -14,13 +14,10 @@ const ProfilePage = () => {
   if (!currentUser) {
     return <h1>please log in first</h1>;
   }
-
   //A condition to show the user's information on the profile page
   if (currentUser) {
     const ColectionDatabase = ref(database, "users/" + currentUser.uid);
-
     get(ColectionDatabase).then((snapshot) => {
-      console.log(snapshot.val());
       setValues(snapshot.val());
     });
   } else {
@@ -60,12 +57,12 @@ const ProfilePage = () => {
         )}
 
         <button
+          data-testid="logout-button"
           type="submit"
           onClick={() => {
-            navigate("/Products", { replace: true });
-            {
-              logout();
-            }
+            logout().then(() => {
+              navigate("/Products", { replace: true });
+            });
           }}
         >
           Log out
