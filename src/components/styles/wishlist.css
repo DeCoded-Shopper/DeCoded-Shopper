@@ -1,5 +1,51 @@
 .wishlist__table {
   justify-content: center;
-  margin-left: 150px;
   align-items: center;
+  position: relative;
+}
+.product__wishCard {
+  width: 150vh;
+  margin-left: 250px;
+  display: flex;
+  align-items: center;
+}
+.wishlistCard__name {
+  width: 80vh;
+  margin-left: 50px;
+}
+.wishlistCard__deleteButton {
+  width: 4vh;
+  position: absolute;
+  right: 0;
+}
+.totalitem__wishlist {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  margin-left: 250px;
+  margin-bottom: 30px;
+}
+.wishlistCard__totalitem {
+  position: absolute;
+  margin-right: 540px;
+  right: 0;
+}
+
+.total__wishlist {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  margin-left: 250px;
+}
+.wishlistCard__totalprice {
+  position: absolute;
+  margin-right: 480px;
+  right: 0;
+}
+.wishlistCard__clearall {
+  position: absolute;
+  margin-right: 200px;
+  right: 0;
+
+  /* margin-top: 20px; */
 }

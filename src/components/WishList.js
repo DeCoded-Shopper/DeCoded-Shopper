@@ -23,50 +23,48 @@ const Wishlist = () => {
     // this will return table of all items in wishlist
     <>
       <div className="totalitem__wishlist">
-        <p data-testid="wishlisttotal-items">
-          Wishlist total items: {totalItems}
-        </p>
+        <p data-testid="wishlisttotal-items">Wishlist total items:</p>
+        <p className="wishlistCard__totalitem">{totalItems}</p>
       </div>
       <table className="wishlist__table">
         {items.map((item, index) => {
           return (
-            <tbody>
-              <tr key={index}>
-                <td>
-                  <img
-                    src={item.image}
-                    style={{ height: "6rem", width: "6rem" }}
-                    alt=""
-                  ></img>
-                </td>
-                <td> {item.title} </td>
-                <td> </td>
-                <td> R {item.price} </td>
-                <td> </td>
-                <td>
-                  {" "}
-                  <DeleteOutlineIcon onClick={() => removeItem(item.id)}>
-                    {" "}
-                  </DeleteOutlineIcon>{" "}
-                </td>
-              </tr>
-            </tbody>
+            <div className="product__wishCard">
+              <div className="wishlistCard__image">
+                <img
+                  src={item.image}
+                  style={{ height: "6rem", width: "6rem" }}
+                  alt=""
+                ></img>
+              </div>
+              <p className="wishlistCard__name">
+                {item.title.substring(0, 25)}
+              </p>
+              <p className="wishlistCard__price">R {item.price}</p>
+              <div className="wishlistCard__deleteButton">
+                <DeleteOutlineIcon
+                  onClick={() => removeItem(item.id)}
+                ></DeleteOutlineIcon>
+              </div>
+            </div>
           );
         })}
       </table>
       <div className="total__wishlist">
-        <p data-testid="wishlisttotal-amount">Wishlist price total: R {sum}</p>
+        <p data-testid="wishlisttotal-amount">Wishlist price total: </p>
+        <p className="wishlistCard__totalprice">R {sum}</p>
+        <button
+          className="wishlistCard__clearall"
+          data-testid="clear_all"
+          onClick={() => {
+            items.forEach((item) => {
+              removeItem(item.id);
+            });
+          }}
+        >
+          Clear wishlist
+        </button>
       </div>
-      <button
-        data-testid="clear_all"
-        onClick={() => {
-          items.forEach((item) => {
-            removeItem(item.id);
-          });
-        }}
-      >
-        Clear wishlist
-      </button>
     </>
   );
 };
