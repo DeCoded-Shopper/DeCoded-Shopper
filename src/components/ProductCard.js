@@ -26,9 +26,9 @@ const ProductCard = (proparty) => {
 
   const { addItem } = useCart();
   return (
-    <div className="CardContainer">
+    <div data-testid="wishTotal" className="CardContainer">
       <div className="card-body">
-        <h6 className="card-title">{proparty.title.substring(0, 25)}</h6>
+        <h6 className="card-title">{proparty.title?.substring(0, 25)}</h6>
         <p className="card-price">Price: R {proparty.price}</p>
         {/* <h6 class="card-text">{proparty.category}</h6> */}
       </div>
