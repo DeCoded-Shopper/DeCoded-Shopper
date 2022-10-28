@@ -36,6 +36,16 @@ test("Testing recomanded", () => {
   expect(recomendedElement).toBeInTheDocument();
 });
 
+test("wishlist number items",()=>{
+  render(<WishList/>);
+  const recomendedElement = screen.getByText(/Wishlist total items:/i);
+  expect(recomendedElement).toBeInTheDocument();
+});
+// test("Navbar",()=>{
+//   render(<Navbar/>);
+//   const recomendedElement = screen.getByText(/Decoded Shopper/i);
+//   expect(recomendedElement).toBeInTheDocument();
+// });
 // teting the web footer
 test("test footer", () => {
   render(<Footer />);
@@ -166,6 +176,8 @@ test("test profile page", () => {
   });
   expect(profileHeaderElement).toBeInTheDocument();
 });
+
+
 
 // test("test profile page logout", () => {
 //   render(
