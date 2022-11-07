@@ -4,7 +4,13 @@ import "./styles/wishlist.css";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 const Wishlist = () => {
-  const { isEmpty, items, totalItems, removeItem } = useCart();
+  const {
+    isEmpty,
+    items,
+    totalItems,
+    totalUniqueItems,
+    removeItem,
+  } = useCart();
 
   //this massage will display if the wishlist is empth
 
@@ -24,7 +30,7 @@ const Wishlist = () => {
     <>
       <div className="totalitem__wishlist">
         <p data-testid="wishlisttotal-items">Wishlist total items:</p>
-        <p className="wishlistCard__totalitem">{totalItems}</p>
+        <p className="wishlistCard__totalitem">{totalUniqueItems}</p>
       </div>
       <table className="wishlist__table">
         {items.map((item, index) => {
