@@ -49,3 +49,13 @@ test("testing wishlist cost total", () => {
   const wishTotalAmountElement = screen.getByTestId("wishlisttotal-amount");
   expect(wishTotalAmountElement).toBeInTheDocument();
 });
+
+test("testing wishlist cost total", () => {
+  render(
+    <>
+      <Wishlist />
+    </>
+  );
+  const tableElement = screen.getByTestId("wishlisttotal-itemsTable");
+  expect(tableElement).toBeInTheDocument();
+});

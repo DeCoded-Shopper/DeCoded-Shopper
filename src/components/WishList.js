@@ -32,7 +32,7 @@ const Wishlist = () => {
         <p data-testid="wishlisttotal-items">Wishlist total items:</p>
         <p className="wishlistCard__totalitem">{totalUniqueItems}</p>
       </div>
-      <table className="wishlist__table">
+      <table data-testid="wishlisttotal-itemsTable" className="wishlist__table">
         {items.map((item, index) => {
           return (
             <div className="product__wishCard">
