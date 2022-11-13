@@ -37,10 +37,6 @@ export const database = getDatabase(app);
 //Authorization from Firebase for app
 export const auth = getAuth(app);
 
-// const firestoreDatabase = getFirestore();
-// const ColectionDatabase = ref(database, "users/");
-// export { ColectionDatabase };
-
 //saves data to real time database
 function createData(userID, email, name, number, location) {
   set(ref(database, "users/" + userID), {
