@@ -1,6 +1,9 @@
 version: "2.1"
 orbs:
   codecov: codecov/codecov@3.2.3
+    ignore:
+      - "**/api"
+      - "init-firebase.js"
   node: circleci/node@5.0.2
 
 jobs:
