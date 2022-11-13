@@ -35,11 +35,6 @@ test("Testing recomanded", () => {
   expect(recomendedElement).toBeInTheDocument();
 });
 
-// test("Navbar",()=>{
-//   render(<Navbar/>);
-//   const recomendedElement = screen.getByText(/Decoded Shopper/i);
-//   expect(recomendedElement).toBeInTheDocument();
-// });
 // teting the web footer
 test("test footer", () => {
   render(<Footer />);
@@ -53,14 +48,6 @@ test("test search and category div ", () => {
   const SearchDivElement = screen.getByTestId("search-manager");
   expect(SearchDivElement).toBeInTheDocument();
 });
-
-// test("test products loading", () => {
-//   render(<Products />);
-//   const ProductsLoadingElement = screen.getByRole("heading", {
-//     name: /loading\.\.\./i,
-//   });
-//   expect(ProductsLoadingElement).toBeInTheDocument();
-// });
 
 test("test products search by category", () => {
   render(<Products />);
@@ -170,15 +157,3 @@ test("test profile page", () => {
   });
   expect(profileHeaderElement).toBeInTheDocument();
 });
-
-// test("test profile page logout", () => {
-//   render(
-//     <Router>
-//       <AuthProvider>
-//         <ProfilePage />
-//       </AuthProvider>
-//     </Router>
-//   );
-//   const profileLogoutElement = screen.getByTestId("logout-button");
-//   expect(profileLogoutElement).toBeInTheDocument();
-// });
