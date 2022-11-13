@@ -16,7 +16,6 @@ import reducer, { initialState } from "./components/states/reducer";
 function App() {
   return (
     <>
-      {/* <CartProvider> */}
       <StateProvider initialState={initialState} reducer={reducer}>
         <AuthProvider>
           <Navbar />
@@ -35,7 +34,6 @@ function App() {
           <Footer />
         </AuthProvider>
       </StateProvider>
-      {/* </CartProvider> */}
     </>
   );
 }
