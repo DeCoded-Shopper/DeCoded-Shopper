@@ -8,6 +8,7 @@ ignore:
     - "src/components/ProfilePage.js"
     - "src/components/Products.js"
     - "src/api"
+    - "src/Register.js"
     - "src/App.js"
     - "src/index.js"
     - "src/reportWebVitals.js"
