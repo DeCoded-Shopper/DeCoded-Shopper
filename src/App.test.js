@@ -7,7 +7,6 @@ import Register from "./components/Register";
 import Navbar from "./components/Navbar";
 import WishList from "./components/WishList";
 import Products from "./components/Products";
-import App from "./App";
 import { AuthProvider } from "./context/AuthProvider";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import ProfilePage from "./components/ProfilePage";
