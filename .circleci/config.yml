@@ -39,3 +39,6 @@ workflows:
   test_my_app:
     jobs:
       - test
+
+ignore:
+    - "init-firebase.js"
