@@ -4,11 +4,14 @@ orbs:
   node: circleci/node@5.0.2
 
 ignore:
-    - "src/components/init-firebase.js"  
-    - "init-firebase.js"
+    - "src/components/init-firebase.js"
     - "ProfilePage.js"
     - "Products.js"
-    - ""
+    - "src/api"
+    - "App.js"
+    - "index.js"
+    - "reportWebVitals.js"
+
 
 jobs:
   test:
