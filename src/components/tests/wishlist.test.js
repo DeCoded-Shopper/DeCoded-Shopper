@@ -1,17 +1,17 @@
 import React from "react";
-import { render, screen, cleanup, fireEvent } from "@testing-library/react";
-import Products from "../Products";
-import ProductCard from "../ProductCard";
-import userEvent from "@testing-library/user-event";
-import { CartProvider, useCart } from "react-use-cart";
+import { cleanup, render, screen } from "@testing-library/react";
 import Wishlist from "../WishList";
-import { AuthProvider } from "../../context/AuthProvider";
-import { Router } from "react-router-dom";
+import reducer, { initialState } from "../states/reducer";
+import { StateProvider } from "../states/StateProvider";
+
+afterEach(cleanup);
 
 test("testing wishlist clear all", () => {
   render(
     <>
-      <Wishlist />
+      <StateProvider initialState={initialState} reducer={reducer}>
+        <Wishlist />
+      </StateProvider>
     </>
   );
   const wishClearallElement = screen.getByRole("button", {
@@ -23,7 +23,9 @@ test("testing wishlist clear all", () => {
 test("testing wishlist item total", () => {
   render(
     <>
-      <Wishlist />
+      <StateProvider initialState={initialState} reducer={reducer}>
+        <Wishlist />
+      </StateProvider>
     </>
   );
   const wishTotalItemElement = screen.getByTestId("wishlisttotal-items");
@@ -33,7 +35,9 @@ test("testing wishlist item total", () => {
 test("testing wishlist cost total", () => {
   render(
     <>
-      <Wishlist />
+      <StateProvider initialState={initialState} reducer={reducer}>
+        <Wishlist />
+      </StateProvider>
     </>
   );
   const wishTotalAmountElement = screen.getByTestId("wishlisttotal-amount");
@@ -43,19 +47,11 @@ test("testing wishlist cost total", () => {
 test("testing wishlist cost total", () => {
   render(
     <>
-      <Wishlist />
+      <StateProvider initialState={initialState} reducer={reducer}>
+        <Wishlist />
+      </StateProvider>
     </>
   );
   const wishTotalAmountElement = screen.getByTestId("wishlisttotal-amount");
   expect(wishTotalAmountElement).toBeInTheDocument();
-});
-
-test("testing wishlist cost total", () => {
-  render(
-    <>
-      <Wishlist />
-    </>
-  );
-  const tableElement = screen.getByTestId("wishlisttotal-itemsTable");
-  expect(tableElement).toBeInTheDocument();
 });

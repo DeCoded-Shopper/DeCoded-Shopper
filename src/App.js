@@ -14,11 +14,14 @@ import { CartProvider } from "react-use-cart";
 import "./index.css";
 
 import { Route, Routes } from "react-router-dom";
+import { StateProvider } from "./components/states/StateProvider";
+import reducer, { initialState } from "./components/states/reducer";
 
 function App() {
   return (
     <>
-      <CartProvider>
+      {/* <CartProvider> */}
+      <StateProvider initialState={initialState} reducer={reducer}>
         <AuthProvider>
           <Navbar />
 
@@ -27,15 +30,16 @@ function App() {
               <Route path="/" element={<Products />} />
               <Route path="/products" element={<Products />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/wishlist" element={<WishList />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/wishlist" element={<WishList />} />
               <Route path="/profilepage" element={<ProfilePage />} />
             </Routes>
           </div>
 
           <Footer />
         </AuthProvider>
-      </CartProvider>
+      </StateProvider>
+      {/* </CartProvider> */}
     </>
   );
 }

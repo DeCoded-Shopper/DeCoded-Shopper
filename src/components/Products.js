@@ -5,11 +5,14 @@ import ProductCard from "./ProductCard";
 import axios from "axios";
 
 import Select from "react-select";
+import { database } from "./init-firebase";
+import { onValue, ref } from "firebase/database";
 
 const Products = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
+  const [datas, setDatas] = useState([]);
 
   const options = [
     { value: "electronics", label: "electronics" },
@@ -18,26 +21,36 @@ const Products = () => {
     { value: "women's clothing", label: "women's clothing" },
   ];
   const [selectedOption, setSelectedOption] = useState(null);
-  let dataUrl = "https://fakestoreapi.com/products/";
+  // let dataUrl = "https://fakestoreapi.com/products/";
+  const dbRef = ref(database, "products/");
+
+  // useEffect(() => {
+  //   onValue(dbRef, (DataSnapshot) => {
+  //     setDatas(DataSnapshot.val());
+  //   });
+  // }, []);
 
   // this will get all items from an API
   useEffect(() => {
+    // getProducts();
     setLoading(true);
-    let datain = true;
-    axios({
-      method: "GET",
-      url: dataUrl,
-    })
-      .then((res) => {
-        setData(res.data);
-      })
-      .catch((e) => console.log(e))
-      .finally(() => setLoading(false));
-  }, []);
 
+    // axios({
+    //   // method: "GET",
+    //   url: dbRef,
+    // })
+    //   .then((res) => {
+    //     setData(res.data);
+    //   })
+    //   .catch((e) => console.log(e))
+
+    onValue(dbRef, (DataSnapshot) => {
+      setDatas(DataSnapshot.val());
+    });
+    setLoading(false);
+  }, []);
   return (
     // loading all the product items in a products saying
-
     <>
       <div data-testid="search-manager" className="flitter__bar">
         <Select
@@ -69,7 +82,7 @@ const Products = () => {
           data-testid="productstotal-items"
           className="recomanded__container"
         >
-          {data
+          {datas
             .filter((val) => {
               if (val.rating.rate > 4.6) {
                 return val;
@@ -79,12 +92,11 @@ const Products = () => {
             .map((val) => {
               return (
                 <ProductCard
-                  title={val.title}
-                  price={val.price}
-                  category={val.category}
+                  id={val.id}
                   img={val.image}
-                  item={val}
-                  key={val}
+                  price={val.price}
+                  title={val.title}
+                  category={val.category}
                 />
               );
             })}
@@ -92,9 +104,8 @@ const Products = () => {
       </div>
       <div>
         <p>All Products</p>
-
         <div data-testid="allproducts-div" className="products__container">
-          {data
+          {datas
             .filter((val) => {
               if (selectedOption == null) {
                 return val;
@@ -115,24 +126,30 @@ const Products = () => {
             .map((val) => {
               return (
                 <ProductCard
-                  title={val.title}
-                  price={val.price}
-                  category={val.category}
+                  // title={val.title}
+                  // price={val.price}
+                  // category={val.category}
+                  // img={val.image}
+                  // item={val}
+                  // key={val}
+
+                  id={val.id}
                   img={val.image}
-                  item={val}
-                  key={val}
+                  price={val.price}
+                  title={val.title}
+                  category={val.category}
                 />
               );
             })}
 
-          <div className="">
+          {/* <div className="">
             {loading && (
               <div>
                 {" "}
                 <h1>Loading...</h1>
               </div>
             )}
-          </div>
+          </div> */}
         </div>
       </div>
     </>

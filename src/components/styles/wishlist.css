@@ -4,8 +4,8 @@
   position: relative;
 }
 .product__wishCard {
-  width: 150vh;
-  margin-left: 250px;
+  width: 100vh;
+  margin-left: 100px;
   display: flex;
   align-items: center;
 }
@@ -16,7 +16,7 @@
 .wishlistCard__deleteButton {
   width: 4vh;
   position: absolute;
-  right: 0;
+  right: 250px;
 }
 .totalitem__wishlist {
   display: flex;
@@ -24,6 +24,12 @@
   margin-top: 30px;
   margin-left: 250px;
   margin-bottom: 30px;
+}
+.wishlistCard__price {
+  width: 30vh;
+  position: absolute;
+  margin-left: 0px;
+  right: 450px;
 }
 .wishlistCard__totalitem {
   position: absolute;
@@ -37,6 +43,7 @@
   margin-top: 30px;
   margin-left: 250px;
 }
+
 .wishlistCard__totalprice {
   position: absolute;
   margin-right: 480px;
