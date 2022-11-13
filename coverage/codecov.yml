@@ -1,4 +1,0 @@
-ignore:
-  - "../src/reportWebVitals.js" # ignore folders and all its contents
-  - "../src/index.js
-
