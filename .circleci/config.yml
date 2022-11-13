@@ -3,6 +3,9 @@ orbs:
   codecov: codecov/codecov@3.2.3
   node: circleci/node@5.0.2
 
+ignore:
+    - "src/components/init-firebase.js"  
+
 jobs:
   test:
     docker:
