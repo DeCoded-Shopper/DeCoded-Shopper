@@ -5,12 +5,12 @@ orbs:
 
 ignore:
     - "src/components/init-firebase.js"
-    - "ProfilePage.js"
-    - "Products.js"
+    - "src/components/ProfilePage.js"
+    - "src/components/Products.js"
     - "src/api"
-    - "App.js"
-    - "index.js"
-    - "reportWebVitals.js"
+    - "src/App.js"
+    - "src/index.js"
+    - "src/reportWebVitals.js"
 
 
 jobs:
