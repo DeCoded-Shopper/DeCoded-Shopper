@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./styles/Product.css";
 
 import ProductCard from "./ProductCard";
-import axios from "axios";
 
 import Select from "react-select";
 import { database } from "./init-firebase";

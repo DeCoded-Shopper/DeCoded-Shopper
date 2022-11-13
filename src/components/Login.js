@@ -71,6 +71,7 @@ const Login = () => {
           <form onSubmit={handleSubmit}>
             <label htmlFor="email">Email:</label>
             <input
+              data-testid="email-input"
               type="text"
               id="email"
               ref={userRef}
@@ -98,6 +99,7 @@ const Login = () => {
 
             <label htmlFor="password">Password:</label>
             <input
+              data-testid="password-input"
               type="password"
               id="password"
               onChange={(e) => setPwd(e.target.value)}
@@ -127,6 +129,7 @@ const Login = () => {
             </p>
 
             <button
+              data-testid="login-buton"
               type="submit"
               onClick={handleSubmit}
               disabled={!validEmail || !validPwd}

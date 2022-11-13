@@ -3,10 +3,7 @@ import { render, screen, cleanup, fireEvent } from "@testing-library/react";
 import Products from "../Products";
 import ProductCard from "../ProductCard";
 import userEvent from "@testing-library/user-event";
-import { CartProvider, useCart } from "react-use-cart";
 import Wishlist from "../WishList";
-import { AuthProvider } from "../../context/AuthProvider";
-import { Router } from "react-router-dom";
 import { StateProvider } from "../states/StateProvider";
 import reducer, { initialState } from "../states/reducer";
 
