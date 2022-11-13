@@ -151,3 +151,9 @@ export function readData() {
   });
   return name;
 }
+export function getProducts() {
+  const dbRef = ref(database, "products/");
+  onValue(dbRef, (DataSnapshot) => {
+    console.log(DataSnapshot.val());
+  });
+}
