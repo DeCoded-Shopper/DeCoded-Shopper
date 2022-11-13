@@ -3,17 +3,6 @@ orbs:
   codecov: codecov/codecov@3.2.3
   node: circleci/node@5.0.2
 
-ignore:
-    - "src/components/init-firebase.js"
-    - "src/components/ProfilePage.js"
-    - "src/components/Products.js"
-    - "src/api"
-    - "src/Register.js"
-    - "src/App.js"
-    - "src/index.js"
-    - "src/reportWebVitals.js"
-
-
 jobs:
   test:
     docker:
