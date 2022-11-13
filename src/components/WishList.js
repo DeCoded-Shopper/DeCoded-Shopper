@@ -76,14 +76,15 @@ const Wishlist = () => {
                 alt=""
               ></img>
             </div>
-            <p className="wishlistCard__name">
-              {item.title ? item.title.substring(0, 25) : ""}
+            <p data-testid="wishlist__name" className="wishlistCard__name">
+              {item.title ? item.title.substring(0, 25) : item.title}
             </p>
-            <p className="wishlistCard__price">
-              R {item.price > 0 ? item.price.toFixed(2) : 0}
+            <p data-testid="wishlist__price" className="wishlistCard__price">
+              R {item.price > 0 ? item.price.toFixed(2) : item.price}
             </p>
             <div className="wishlistCard__deleteButton">
               <DeleteOutlineIcon
+                data-testid="wish__deleteItem"
                 onClick={() => RemoveFromWishList(item.id)}
               ></DeleteOutlineIcon>
             </div>
