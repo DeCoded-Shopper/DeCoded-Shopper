@@ -24,22 +24,6 @@ const ProfilePage = () => {
     return null;
   }
 
-  // useEffect(() => {
-  // if (currentUser)
-  // {
-  //   const ColectionDatabase = ref(database, "users/" + currentUser.uid);
-
-  //     get(ColectionDatabase).then((snapshot) => {
-  //       console.log(snapshot.val());
-  //       setValues(snapshot.val());
-  //       // snapshot.forEach((childSnapshot) => {
-  //       //   //console.log([childSnapshot.val().title,childSnapshot.val().category]);
-  //       //   setValues(childSnapshot.val());
-  //       // });
-  //     });
-  //   }
-  // }, []);
-
   return (
     //This allows for user to see their information and also be able to logout.
     <>
