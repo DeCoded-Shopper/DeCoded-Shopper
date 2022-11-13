@@ -1,5 +1,4 @@
 export const initialState = {
-
   wishList: [],
 };
 
@@ -20,18 +19,16 @@ const reducer = (state, action) => {
       const index = state.wishList.findIndex(
         (wishListItem) => wishListItem.id === action.id
       );
-
       let newWishList = [...state.wishList];
-
       if (index >= 0) {
         newWishList.splice(index, 1);
-      } else {
-        console.warn(
-          `can not remove id ${action.id} since it is not in the wishlist`
-        );
       }
+      // else {
+      //   console.warn(
+      //     `can not remove id ${action.id} since it is not in the wishlist`
+      //   );
+      // }
       return { ...state, wishList: newWishList };
-
     default:
       return state;
   }
